@@ -1,0 +1,116 @@
+<%- include("partials/header-purple") -%>
+
+<link rel="stylesheet" href="css/about.css">
+
+<section id="info">
+
+  <h1 class="info-heading">About Bilbo</h1>
+  <h6 class="info-small-heading">WE HELP BUSINESSES GROW. BILBO PUTS THE POWER OF <br> BILLBOARDS DIRECTLY
+    IN THE HANDS OF BUSINESS OWNERS.</h6>
+  <div class="info-wrapper">
+    <div class="info-image-div">
+      <img class="info-image" src="images/info-image.png" alt="placeholder-image">
+    </div>
+    <div class="info-text">
+      <p class="info-paragraph">Bilbo allows small- and medium-sized businesses to achieve <br>greater flexibility,
+        geographic reach, mass visibility, and more <br>billboard campaign control than ever before.
+        <br> <br>
+        With Bilbo, advertisers have access to hundreds of billboards <br>across Egypt.
+        Because you only pay <br>what you get, you have the flexibility to diversify when, where, and <br>how you are seen.</p>
+      <% if(auth) { %>
+        <a class="" href="/process">
+          <button type="button" class="info-btn btn btn-lg">Get Started <i class="fas fa-angle-right"></i></button>
+        </a>
+      <% } else { %>
+        <a class="" href="/login">
+          <button type="button" class="info-btn btn btn-lg">Get Started <i class="fas fa-angle-right"></i></button>
+        </a>
+      <% } %>
+    </div>
+  </div>
+
+</section>
+
+<section id="data">
+
+  <div class="data-section">
+    <div class="data-1">
+      <h2 class="data-heading-1">2021</h2>
+      <h4 class="data-heading-small-1">Bilbo is founded</h4>
+    </div>
+    <div class="data-2">
+      <h2 class="data-heading-2">300+</h2>
+      <h4 class="data-heading-small-2">Sign Locations</h4>
+    </div>
+    <div class="data-3">
+      <h2 class="data-heading-3">100,000+</h2>
+      <h4 class="data-heading-small-3">Users</h4>
+    </div>
+    <div class="data-4">
+      <h2 class="data-heading-4">1,100+</h2>
+      <h4 class="data-heading-small-4">Billboards</h4>
+    </div>
+  </div>
+
+  <div class="ceo-section">
+    <div class="ceo-image-div">
+      <img class="ceo-image" src="images/ceo-image.jpeg" alt="personal-picture">
+    </div>
+    <h4 class="ceo-heading">Ahmed Abdelrahman</h4>
+    <p class="ceo-paragraph">CEO & Founder</p>
+  </div>
+
+</section>
+
+<section id="billboards">
+  <div class="">
+    <div class="why-billboards">
+      <div class="why-billboards-text">
+        <hr class="why-billboards-hr">
+        <h1 class="why-billboards-heading">Our Mission</h1>
+        <p class="why-billboards-paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br>
+          Integer feugiat metus eu dictum porttitor.
+          Quisque ultricies <br> urna dapibus magna tincidunt, ac fringilla purus aliquam. <br>Vivamus in sem nisl.
+          Etiam et risus id purus vehicula maximus.<br> Quisque laoreet semper nisl eget congue.
+          Nulla varius neque <br> vitae tortor euismod euismod. Morbi laoreet euismod lacus <br> quis iaculis.
+          Ut imperdiet tempus tortor, non lacinia nisi <br>honcus non. Vestibulum aliquam orci sed quam volutpat,<br>
+          in viverra sem sodales. Maecenas tellus sapien, sodales <br>sit amet euismod nec, vehicula id velit.
+          Mauris commodo <br>accumsan dictum. Donec scelerisque rutrum justo sed pulvinar.</p>
+
+        <a class="why-billboards-anchor" href="/process">
+            <span>GET STARTED </span>
+            <img style="margin-bottom:3px;" src='images/right-arrow-pink.png' />
+        </a>
+      </div>
+      <div>
+        <img class="why-billboards-image" src="images/why-billboards.gif" alt="billboard-image">
+      </div>
+    </div>
+
+    <!-- <hr class="center-ball"> -->
+
+    <div class="why-bilbo">
+      <div class="why-bilbo-text">
+        <hr class="why-billboards-hr">
+        <h3 class="why-bilbo-heading">Our Goal</h3>
+        <p class="why-bilbo-paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. <br>
+          Integer feugiat metus eu dictum porttitor.
+          Quisque ultricies <br> urna dapibus magna tincidunt, ac fringilla purus aliquam. <br>Vivamus in sem nisl.
+          Etiam et risus id purus vehicula maximus.<br> Quisque laoreet semper nisl eget congue.
+          Nulla varius neque <br> vitae tortor euismod euismod. Morbi laoreet euismod lacus <br> quis iaculis.
+          Ut imperdiet tempus tortor, non lacinia nisi <br>honcus non. Vestibulum aliquam orci sed quam volutpat,<br>
+          in viverra sem sodales. Maecenas tellus sapien, sodales <br>sit amet euismod nec, vehicula id velit.
+          Mauris commodo <br>accumsan dictum. Donec scelerisque rutrum justo sed pulvinar.</p>
+        <a class="why-billboards-anchor" href="/process">
+            <span>GET STARTED </span>
+            <img style="margin-bottom:3px;" src='images/right-arrow-pink.png' />
+        </a>
+      </div>
+      <div class="why-bilbo-image">
+        <img class="why-bilbo-image" src="images/why-bilbo.jpg" alt="billboard-image">
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include("partials/footer") -%>

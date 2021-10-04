@@ -1,0 +1,44 @@
+/* Section: header */
+
+#header {
+  overflow: hidden;
+}
+
+#navbar {
+  background-color: #e614ff;
+  height: 125px;
+  width: 100%;
+  z-index: 1;
+}
+
+.container-image {
+  padding-left: 10%;
+  padding-bottom: 1%;
+}
+
+.navbar-nav {
+  padding: 2% 15% 2% 0;
+}
+
+.nav-item {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.anchor {
+ font-family: 'Roboto', sans-serif;
+ color: #fff;
+ font-size: 1.1em;
+}
+
+.btn-header {
+
+}
+
+.btn-login {
+  background-color: #112e41;
+}
+
+.anchor:hover {
+  color:#112e41;
+}

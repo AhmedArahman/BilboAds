@@ -1,0 +1,156 @@
+<%- include("partials/header-purple") -%>
+
+  <link rel="stylesheet" href="css/locations.css">
+
+  <section id="maps-section">
+    <div class="container-fluid">
+
+      <div class="maps-text">
+        <hr class="maps-hr">
+        <h2 class="maps-heading">Digital Billboard Locations</h2>
+        <h3 class="maps-heading-3">Take a look at where we currently offer Bilbo digital billboards.</h3>
+        <p class="maps-paragraph">Target your local market or blanket the nation with your brand,
+          your digital billboards can span across the whole country from top
+          to bottom.<br>
+          Want to check all our locations?</p>
+
+        <% if(auth) { %>
+          <a class="" href="/process">
+            <button type="button" class="maps-btn btn btn-lg">Get Started <i class="fas fa-angle-right"></i></button>
+          </a>
+        <% } else { %>
+          <a class="" href="/login">
+            <button type="button" class="maps-btn btn btn-lg">Get Started <i class="fas fa-angle-right"></i></button>
+          </a>
+        <% } %>
+      </div>
+
+      <div id="mapMain" class="google-maps"></div>
+    </div>
+  </section>
+
+  <section id="gov" class="container-fluid">
+    <div class="cairo">
+      <h3 class="gov-heading">Build Your Brand <br>With Cairo Billboards</h3>
+      <hr class="gov-hr">
+      <p class="gov-paragraph">We have billboards throughout the governorate of Cairo. You can <br> advertise on any
+        or all Cairo billboards to help you build <br>awareness and grow your business. <br> <br>
+
+        Let us know if you have any questions about the locations. <br> You can see detailed
+        information on each board after creating <br> a free account</p>
+
+      <% if(auth) { %>
+        <a class="" href="/process">
+          <button type="button" class="gov-btn btn btn-lg">Get Started <i class="fas fa-angle-right"></i></button>
+        </a>
+      <% } else { %>
+        <a class="" href="/login">
+          <button type="button" class="gov-btn btn btn-lg">Get Started <i class="fas fa-angle-right"></i></button>
+        </a>
+      <% } %>
+      <div id="mapCairo"></div>
+    </div>
+
+    <div class="cairo">
+      <h3 class="gov-heading">Build Your Brand <br>With Giza Billboards</h3>
+      <hr class="gov-hr">
+      <p class="gov-paragraph">We have billboards throughout the governorate of Giza. You can <br> advertise on any
+        or all Giza billboards to help you build <br>awareness and grow your business. <br> <br>
+
+        Let us know if you have any questions about the locations. <br> You can see detailed
+        information on each board after creating <br> a free account</p>
+        <% if(auth) { %>
+          <a class="" href="/process">
+            <button type="button" class="gov-btn maps-btn btn btn-lg">Get Started <i class="fas fa-angle-right"></i></button>
+          </a>
+        <% } else { %>
+          <a class="" href="/login">
+            <button type="button" class="gov-btn maps-btn btn btn-lg">Get Started <i class="fas fa-angle-right"></i></button>
+          </a>
+        <% } %>
+      <div id="mapGiza"></div>
+    </div>
+
+    <div class="cairo">
+      <h3 class="gov-heading">Build Your Brand <br>With Alexandria Billboards</h3>
+      <hr class="gov-hr">
+      <p class="gov-paragraph">We have billboards throughout the governorate of Alexandria. You can <br> advertise on any
+        or all Alexandria billboards to help you build <br>awareness and grow your business. <br> <br>
+
+        Let us know if you have any questions about the locations. <br> You can see detailed
+        information on each board after creating <br> a free account</p>
+        <% if(auth) { %>
+          <a class="" href="/process">
+            <button type="button" class="gov-btn maps-btn btn btn-lg">Get Started <i class="fas fa-angle-right"></i></button>
+          </a>
+        <% } else { %>
+          <a class="" href="/login">
+            <button type="button" class="gov-btn maps-btn btn btn-lg">Get Started <i class="fas fa-angle-right"></i></button>
+          </a>
+        <% } %>
+      <div id="mapAlex"></div>
+    </div>
+  </section>
+
+    <script type="text/javascript">
+        let mapMain, mapCairo, mapGiza, mapAlex;
+
+        function initMap() {
+          mapMain = new google.maps.Map(document.getElementById("mapMain"), {
+            center: { lat: 29.519934, lng: 29.451174 },
+            zoom: 6.5,
+          });
+
+          mapCairo = new google.maps.Map(document.getElementById("mapCairo"), {
+            center: { lat: 30.126827451292367, lng: 31.322493564241277},
+            zoom: 11,
+          });
+
+          mapGiza = new google.maps.Map(document.getElementById("mapGiza"), {
+            center: { lat: 30.09926705034202, lng: 31.144412016167138 },
+            zoom: 11,
+          });
+
+          mapAlex = new google.maps.Map(document.getElementById("mapAlex"), {
+            center: { lat: 31.199004, lng: 29.894378},
+            zoom: 11,
+          });
+
+          var marker, i;
+          var markers = [];
+          var markers2 = [];
+
+          <% for( i = 0; i < billboards.length; i++) { %>
+             marker = new google.maps.Marker({
+               position: new google.maps.LatLng(<%= billboards[i].latitude %>, <%= billboards[i].longitude %>)
+            });
+            marker2 = new google.maps.Marker({
+              position: new google.maps.LatLng(<%= billboards[i].latitude %>, <%= billboards[i].longitude %>)
+           });
+              <% if(billboards[i].state === "Cairo") { %>
+                  marker.setMap(mapCairo);
+              <% } %>
+              <% if(billboards[i].state === "Giza") { %>
+                  marker.setMap(mapGiza);
+              <% } %>
+              <% if(billboards[i].state === "Alexandria") { %>
+                  marker.setMap(mapAlex);
+              <% } %>
+            markers.push(marker);
+            markers2.push(marker2);
+          <% } %>
+
+          for (var i = 0; i < markers2.length; i++) {
+            markers2[i].setMap(mapMain);
+          }
+        }
+
+    </script>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbaquDx8y6rEsF3pDbMJuoY-uhD3jHEO8&callback=initMap&libraries=&v=weekly"
+      async
+    ></script>
+
+  <%- include("partials/footer") -%>

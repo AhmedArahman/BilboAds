@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+
+  <?xml version="1.0" encoding="utf-8"?>
+
+  <meta charset="utf-8">
+  <title>Bilbo Ads - Billboard Advertising Never Been Easier</title>
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+  <link rel="manifest" href="images/site.webmanifest">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900&family=Roboto:wght@700&display=swap" rel="stylesheet">
+
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/63cfdc02a3.js" crossorigin="anonymous"></script>
+
+  <base href="/">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  <!-- My css -->
+  <link rel="stylesheet" href="css/header.css">
+</head>
+
+<body>
+
+  <script>
+  $(document).ready(function(){
+    $(this).scrollTop(0);
+  });
+  </script>
+
+  <section id="header">
+
+    <!-- navbar -->
+    <nav id="navbar" class="navbar navbar-expand-lg">
+
+      <div class="container-fluid">
+        <div class="container-image">
+          <a href="/home" class="navbar-brand">
+            <img class="logo" src="images/logo-blue-test.png" alt="">
+          </a>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <a href="/locations" class="nav-link anchor">LOCATIONS</a>
+            </li>
+            <li class="nav-item">
+              <a href="/services" class="nav-link anchor">SERVICES</a>
+            </li>
+            <li class="nav-item">
+              <a href="/cost" class="nav-link anchor">COST</a>
+            </li>
+            <% if(auth) { %>
+              <li class="nav-item">
+                <a href="/profile" id="profile" class="nav-link anchor">PROFILE</a>
+              </li>
+              <li class="nav-item">
+                <a href="/logout" id="logout" class="nav-link anchor">LOG OUT</a>
+              </li>
+            <% } else { %>
+            <li class="nav-item">
+              <!-- <a href="/login" id="login" class="nav-link anchor">LOGIN</a> -->
+              <a class="btn-header" id="login" class="nav-link" href="/login">
+                <button type="button" id="login" class="btn-login btn btn-lg">Login</button>
+              </a>
+            </li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    </section>
+
+    <script>
+    $(document).ready(function(){
+      $(window).scroll(function(){
+          var scroll = $(window).scrollTop();
+          if (scroll > $(".navbar").height()) {
+            $(".navbar").css("background" , "#e614ff");
+            $(".navbar").css("transition", "background-color 200ms linear");
+            $(".anchor").css("color" , "#FFF5FF");
+            $(".anchor").on({
+              mouseenter: function () {
+                $(this).css("color" , "#112e41");
+              },
+              mouseleave: function () {
+                $(this).css("color" , "#FFF5FF");
+              }
+            });
+          }
+        })
+      })
+    </script>

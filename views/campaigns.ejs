@@ -1,0 +1,70 @@
+<%- include("partials/header-purple") -%>
+
+<link rel="stylesheet" href="css/campaigns.css">
+
+<section id="campaign">
+
+  <div class="container container-big">
+    <div class="img">
+      <img src="data:image/<%=newCampaign[0].img.img.contentType%>;base64,
+        <%=newCampaign[0].img.img.data.toString('base64')%>">
+    </div>
+    <div class="container-text">
+      <div class="container container-small">
+        <form>
+          <div class="row">
+            <h4>Campaign Information</h4>
+            <div class="input-group input-group-icon">
+              <input type="text" placeholder="Product Name: <%= newCampaign[0].productName %>" disabled/>
+            </div>
+            <div class="input-group input-group-icon">
+              <input type="email" placeholder="Locations:  <%= newCampaign[0].billboards.length %> billboards" disabled/>
+            </div>
+            <div class="input-group input-group-icon">
+              <input type="password" placeholder="Hours:  <%= newCampaign[0].hoursDisplayed %> hours" disabled/>
+            </div>
+            <div class="input-group input-group-icon">
+              <input type="password" placeholder="Frequency:  <%= newCampaign[0].frequency %> times" disabled/>
+            </div>
+            <div class="input-group input-group-icon">
+              <input type="password" placeholder="Seconds:  <%= newCampaign[0].secondsDisplayed %> seconds" disabled/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-half">
+              <h4>Start Date</h4>
+              <div class="input-group">
+                <div class="col-third">
+                  <input type="text" placeholder="<%= newCampaign[0].startDate.slice(8, 10) %>" disabled/>
+                </div>
+                <div class="col-third">
+                  <input type="text" placeholder="<%= newCampaign[0].startDate.slice(5, 7) %>" disabled/>
+                </div>
+                <div class="col-third">
+                  <input type="text" placeholder="<%= newCampaign[0].startDate.slice(0, 4) %>"  disabled/>
+                </div>
+              </div>
+            </div>
+            <div class="col-half">
+              <h4>End Date</h4>
+              <div class="input-group">
+                <div class="col-third">
+                  <input type="text" placeholder="<%= newCampaign[0].endDate.slice(8, 10) %>" disabled/>
+                </div>
+                <div class="col-third">
+                  <input type="text" placeholder="<%= newCampaign[0].endDate.slice(5, 7) %>" disabled/>
+                </div>
+                <div class="col-third">
+                  <input type="text" placeholder="<%= newCampaign[0].endDate.slice(0, 4) %>"  disabled/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="/profile">
+            <button type="button" class="btn-submit btn btn-lg">Profile</button>
+          </a>
+      </div>
+    </div>
+  </div>
+
+</section>

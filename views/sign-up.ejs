@@ -1,0 +1,42 @@
+<%- include("partials/header-purple") -%>
+
+  <link rel="stylesheet" href="css/sign-up.css">
+
+  <section id="signup-page">
+
+    <div class="wrapper fadeInDown">
+      <div id="formContent">
+        <!-- Tabs Titles -->
+
+        <!-- Icon -->
+        <div class="fadeIn first signup-icon">
+          <img src="images/register.png" alt="">
+        </div>
+
+        <!-- Sign up Form -->
+        <form class="" action="/sign-up" method="POST">
+          <div class="signup-first-name">
+            <input type="text" name="firstName" id="firstName" value="" placeholder="First Name" class="fadeIn second" required>
+          </div>
+          <div class="signup-last-name">
+            <input type="text" name="lastName" id="lastName" value="" placeholder="Last Name" class="fadeIn third" required>
+          </div>
+          <div class="signup-email">
+            <input type="text" id="email" class="fadeIn fourth" name="username" placeholder="Email" required>
+          </div>
+          <div class="signup-password">
+            <input type="password" id="password" class="fadeIn fifth" name="password" placeholder="Password" required>
+          </div>
+          <div class="signup-company">
+            <input type="text" name="companyName" id="companyName" value="" placeholder="Company" class="fadeIn sixth" required>
+          </div>
+          <div class="signup-phone">
+            <input type="text" name="phoneNumber" id="phoneNumber" value="" placeholder="Phone" class="fadeIn seventh" required>
+          </div>
+          <input type="submit" class="fadeIn eighth" value="Register">
+        </form>
+
+      </div>
+    </div>
+
+  </section>

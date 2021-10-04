@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+
+  <meta charset="utf-8">
+  <title>Bilbo Ads - Billboard Advertising Never Been Easier</title>
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+  <link rel="manifest" href="images/site.webmanifest">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900&family=Roboto:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" rel="stylesheet">
+
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/63cfdc02a3.js" crossorigin="anonymous"></script>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  <!-- My css -->
+  <link rel="stylesheet" href="css/home.css">
+</head>
+
+<body>
+
+  <script>
+  $(document).ready(function(){
+    $(this).scrollTop(0);
+  });
+  </script>
+
+  <section id="header">
+
+    <!-- navbar -->
+    <nav id="navbar" class="navbar navbar-expand-lg">
+
+      <div class="container-fluid">
+        <div class="container-image">
+          <a href="/home" class="navbar-brand">
+            <img class="logo" src="images/logo-white.png" alt="">
+          </a>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a href="/cost" class="nav-link anchor">Cost</a>
+            </li>
+            <li class="nav-item">
+              <a href="/locations" class="nav-link anchor">Locations</a>
+            </li>
+            <li class="nav-item">
+              <a href="/services" class="nav-link anchor">Services</a>
+            </li>
+            <% if(auth) { %>
+              <li class="nav-item nav2">
+                <a href="/profile" id="profile" class="nav-link anchor">
+                  <i class="far fa-user-circle fa-2x"></i>
+                </a>
+              </li>
+              <li class="nav-item nav3">
+                <a href="/process" id="logout" class="nav-link anchor">
+                  <button class="btn-nav btn-lg" type="button" name="button"><i class="fas fa-plus"></i> New Campaign</button>
+                </a>
+              </li>
+            <% } else { %>
+            <li class="nav-item nav1">
+              <a href="/login" id="login" class="nav-link anchor">
+                <button class="btn-nav btn-lg" type="button" name="button">Login</button>
+              </a>
+            </li>
+            <% } %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <img class="leaves-right" src="images/leaves-right.png" alt="">
+
+    <script>
+    $(document).ready(function(){
+      $(window).scroll(function(){
+          var scroll = $(window).scrollTop();
+          if (scroll > $(".navbar").height()) {
+            //$(".navbar").css("position", "fixed");
+            $(".navbar").css("background" , "#000");
+            $(".navbar").css("transition", "0.5s");
+            $(".logo").attr("src","images/logo-white.png");
+          }
+          else {
+            //$(".navbar").css("position", "static");
+            $(".logo").attr("src","images/logo-white.png");
+            $(".navbar").css("background" , "#000");
+          }
+        })
+      })
+    </script>
+
+    <div class="banner">
+      <div class="title">
+        <h1 class="title-company">BILBO ADS</h1>
+        <h2 class="title-slogan">BILLBOARD ADVERTISING</h2>
+        <h2 class="title-slogan2">NEVER BEEN EASIER.</h2>
+      </div>
+
+      <div class="">
+        <img class="title-image" src="images/title-image.jpg" alt="">
+      </div>
+      <img class="leaved-left" src="images/leaves-left.png" alt="">
+      <% if(auth) { %>
+        <a class="btn-title" href="/process">
+          <button type="button" class="info-btn btn btn-lg">Get Started <i class="fas fa-angle-right"></i></button>
+        </a>
+      <% } else { %>
+        <a class="btn-title" href="/login">
+          <button type="button" class="btn btn-lg">Get Started <i class="fas fa-angle-right"></i></button>
+        </a>
+      <% } %>
+    </div>
+  </section>
+
+
+  <section id="slogan">
+    <div class="container-fluid container-slogan-image">
+      <div class="slogan-container">
+        <h2 class="slogan-heading">Bilbo helps small and medium sized</h2>
+        <h2 class="slogan-heading">businesses grow.</h2>
+        <div class="paragraph-slogan">
+          <p>Billboards set you apart from the competition by building credibility and brand recognition.
+            Billboards serve as an important top-of-funnel channel that increases the effectiveness of your
+            other marketing channels.</p>
+        </div>
+        <a class="" href="/services">
+          <button type="button" class="btn-black btn btn-lg">Our Services <i class="fas fa-angle-right"></i></button>
+        </a>
+      </div>
+
+      <div class="">
+        <img class="slogan-image" src="images/slogan-image.jpg" alt="billboard-image">
+      </div>
+    </div>
+
+    <div class="container-fluid features">
+
+      <div class="row">
+        <div class="feature-box col-lg-4">
+          <i class="icon fas fa-bullseye fa-4x"></i>
+          <h4 class="feature-title">Help Your Audience Find You</h4>
+          <p>Digital billboards help with the first step of your marketing funnel, brand awareness.</p>
+        </div>
+
+        <div class="feature-box col-lg-4">
+          <i class="icon fab fa-adversal fa-4x"></i>
+          <h4 class="feature-title">Advertise When and Where You Want</h4>
+          <p>Bilbo allows you to choose your desired locations, set your schedule,
+            and adjust your budget to match your marketing needs.</p>
+        </div>
+
+        <div class="feature-box col-lg-4">
+          <i class="icon fas fa-filter fa-4x"></i>
+          <h4 class="feature-title">Improve Your Marketing Funnel Conversion Rate</h4>
+          <p>Adding different channels to your marketing improves conversion and creates more leads.</p>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+  <section id="campaigns">
+
+  </section>
+
+  <section id="maps-section">
+    <div class="container-fluid">
+
+      <div class="maps-text">
+        <hr class="maps-hr">
+        <h2 class="maps-heading">Digital Billboard Locations</h2>
+        <h3 class="maps-heading-3">Take a look at where we currently offer Bilbo digital billboards.</h3>
+        <p class="maps-paragraph">Target your local market or blanket the nation with your brand,
+          your digital billboards can span across the whole country from top
+          to bottom.<br>
+          Want to check all our locations?</p>
+        <a class="" href="/locations">
+          <button type="button" class="maps-btn btn btn-lg">See our full map</button>
+        </a>
+      </div>
+
+      <div id="map" class="google-maps"></div>
+
+      <script type="text/javascript">
+        let map;
+
+        function initMap() {
+          map = new google.maps.Map(document.getElementById("map"), {
+            center: {
+              lat: 29.519934,
+              lng: 29.451174
+            },
+            zoom: 6.5,
+          });
+
+          var marker, i;
+          var markers = [];
+
+          <% for (i = 0; i < billboards.length; i++) { %>
+            marker = new google.maps.Marker({
+              position: new google.maps.LatLng( <%= billboards[i].latitude %>, <%= billboards[i].longitude %>)
+            });
+            markers.push(marker)
+          <% } %>
+
+          for (var i = 0; i < markers.length; i++) {
+            markers[i].setMap(map);
+          }
+        }
+      </script>
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbaquDx8y6rEsF3pDbMJuoY-uhD3jHEO8&callback=initMap&libraries=&v=weekly" async></script>
+
+    </div>
+  </section>
+
+  <section id="prices">
+    <div class="container-fluid">
+      <hr class="prices-hr">
+      <div class="prices-text">
+        <h2 class="prices-heading">Digital Billboard Cost</h2>
+        <p class="prices-paragraph-1">You can pay as little or as much as you want with Bilbo.
+          Our pricing works based on 3 factors.<br>The cost depends on the location(s) and time(s) you choose.
+          You can get started on any budget.<br>Here are average costs of billboards and their results:</p>
+      </div>
+
+      <div class="prices-cards">
+        <div class="card-deck mb-3 text-center">
+
+          <div class="maps-card card mb-4 box-shadow">
+            <div class="card-body">
+              <h4 class="prices-card-heading my-0 font-weight-normal">Price / Slot</h4>
+              <p class="prices-card-paragraph">Each billboard base price is based on time slots,
+              and each time slot is 4 hours, the displayed price on
+              each billboard is the base cost per slot.</p>
+            </div>
+          </div>
+
+          <div class="maps-card card mb-4 box-shadow">
+            <div class="card-body">
+              <h4 class="prices-card-heading my-0 font-weight-normal">Frequency / Slot</h4>
+              <p class="prices-card-paragraph">After you pick your desired time slot(s), you will pick
+              how many times you want your ad to be displayed per time slot,
+              you can pick anywhere from 5 times/slot and up to 100 times.</p>
+            </div>
+          </div>
+
+          <div class="maps-card card mb-4 box-shadow">
+            <div class="card-body">
+              <h4 class="prices-card-heading my-0 font-weight-normal">Seconds / Frequency</h4>
+              <p class="prices-card-paragraph">Our last factor is how many seconds you want your ad to be
+              displayed per the number of times you picked for your ad to be
+              displayed per slot.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="prices-cta">
+        <p class="prices-paragraph-2">Want to estimate your cost?
+          <a class="prices-anchor" href="/cost-estimator"> Use our cost estimator <i class="fas fa-angle-right"></i></a>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="billboards">
+    <div class="">
+      <div class="why-billboards">
+        <div class="why-billboards-text">
+          <hr class="why-billboards-hr">
+          <h1 class="why-billboards-heading">Why digital billboards?</h1>
+          <p class="why-billboards-paragraph">Digital billboards are a form of outdoor advertising that offer<br>more
+            flexibility than most out of home advertising mediums.<br>Unlike most billboard ads, a digital billboard can
+            be updated<br>in real time. Real-time updates bring billboard rental into the<br>digital age by using
+            electronic billboards with software that<br>updates digital bulletins instantly.</p>
+
+            <p>The onset of digital billboards revolutionized when and<br>where billboard ads show, but the process
+            of advertising<br>on one has remained relatively the same.</p>
+          <% if(auth) { %>
+            <a class="why-billboards-anchor" href="/process">
+                <span>GET STARTED </span>
+                <img style="margin-bottom:3px;" src='images/right-arrow-pink.png' />
+            </a>
+          <% } else { %>
+            <a class="why-billboards-anchor" href="/login">
+                <span>GET STARTED </span>
+                <img style="margin-bottom:3px;" src='images/right-arrow-pink.png' />
+            </a>
+          <% } %>
+        </div>
+        <div>
+          <img class="why-billboards-image" src="images/why-billboards.gif" alt="billboard-image">
+        </div>
+      </div>
+
+      <!-- <hr class="center-ball"> -->
+
+      <div class="why-bilbo">
+        <div class="why-bilbo-text">
+          <hr class="why-billboards-hr">
+          <h3 class="why-bilbo-heading">Why Bilbo?</h3>
+          <p class="why-bilbo-paragraph">Bilbo changed the game. We make out of home advertising<br>available
+            to all businesses. No contracts or minimums means<br>anyone with a desire to grow their brand and
+            a few pounds can<br>have their own billboard ads. Advertise in your city or across the<br>country,
+            with billboards ranging from all around Egypt. Whether<br>you are a real-estate agent or have a
+            family-owned restaurant,<br>you decide how much—or how little you want to spend.</p>
+          <% if(auth) { %>
+            <a class="why-billboards-anchor" href="/process">
+                <span>GET STARTED </span>
+                <img style="margin-bottom:3px;" src='images/right-arrow-pink.png' />
+            </a>
+          <% } else { %>
+            <a class="why-billboards-anchor" href="/login">
+                <span>GET STARTED </span>
+                <img style="margin-bottom:3px;" src='images/right-arrow-pink.png' />
+            </a>
+          <% } %>
+        </div>
+        <div class="why-bilbo-image">
+          <img class="why-bilbo-image" src="images/why-bilbo.jpg" alt="billboard-image">
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <%- include("partials/footer") -%>

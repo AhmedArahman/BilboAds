@@ -1,0 +1,186 @@
+<%- include("partials/header-purple") -%>
+
+<link rel="stylesheet" href="css/payment.css">
+
+<section>
+  <div class="process">
+    <div class="row pgb p-0 mt-3">
+      <div class="col step complete p-0">
+        <p>1</p>
+        <span class="img-circle"></span>
+      </div>
+      <div class="col step complete p-0">
+        <p>2</p>
+        <span class="img-circle"></span>
+      </div>
+      <div class="col step complete p-0">
+        <p>3</p>
+        <span class="img-circle"></span>
+      </div>
+      <div class="col step complete p-0">
+        <p>4</p>
+        <span class="img-circle"></span>
+      </div>
+      <div class="col step active p-0">
+        <p>5</p>
+        <span class="img-circle"></span>
+      </div>
+    </div>
+    <div class="row pgb p-0">
+      <div class="col text-center">
+        <h2>Information</h2>
+      </div>
+      <div class="col text-center">
+        <h2>Ad Image</h2>
+      </div>
+      <div class="col text-center active">
+        <h2>Locations</h2>
+      </div>
+      <div class="col text-center active">
+        <h2>Schedule</h2>
+      </div>
+      <div class="col text-center active">
+        <h2>Review</h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="payment">
+  <hr class="payment-hr">
+  <h2 class="payment-heading">Submit your campaign once you have ensured that your campaign is optimized for success</h2>
+
+  <div class="data">
+
+    <div class="container">
+      <form>
+        <div class="row">
+          <h4>Campaign Information</h4>
+          <div class="input-group input-group-icon">
+            <input type="text" placeholder="Product Name: <%= campaign[0].productName %>" disabled/>
+          </div>
+          <div class="input-group input-group-icon">
+            <input type="email" placeholder="Locations:  <%= campaign[0].billboards.length %> billboards" disabled/>
+          </div>
+          <div class="input-group input-group-icon">
+            <input type="password" placeholder="Price:  <%= price %> LE" disabled/>
+          </div>
+          <div class="input-group input-group-icon">
+            <input type="password" placeholder="Hours:  <%= campaign[0].hoursDisplayed %> hours" disabled/>
+          </div>
+          <div class="input-group input-group-icon">
+            <input type="password" placeholder="Frequency:  <%= campaign[0].frequency %> times" disabled/>
+          </div>
+          <div class="input-group input-group-icon">
+            <input type="password" placeholder="Seconds:  <%= campaign[0].secondsDisplayed %> seconds" disabled/>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-half">
+            <h4>Start Date</h4>
+            <div class="input-group">
+              <div class="col-third">
+                <input type="text" placeholder="<%= campaign[0].startDate.slice(8, 10) %>" disabled/>
+              </div>
+              <div class="col-third">
+                <input type="text" placeholder="<%= campaign[0].startDate.slice(5, 7) %>" disabled/>
+              </div>
+              <div class="col-third">
+                <input type="text" placeholder="<%= campaign[0].startDate.slice(0, 4) %>"  disabled/>
+              </div>
+            </div>
+          </div>
+          <div class="col-half">
+            <h4>End Date</h4>
+            <div class="input-group">
+              <div class="col-third">
+                <input type="text" placeholder="<%= campaign[0].endDate.slice(8, 10) %>" disabled/>
+              </div>
+              <div class="col-third">
+                <input type="text" placeholder="<%= campaign[0].endDate.slice(5, 7) %>" disabled/>
+              </div>
+              <div class="col-third">
+                <input type="text" placeholder="<%= campaign[0].endDate.slice(0, 4) %>"  disabled/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <h4>Payment Details</h4>
+          <div class="input-group"><input id="payment-method-card" type="radio" name="payment-method" value="card" checked="true" /><label for="payment-method-card"><span><i class="fa fa-cc-visa"></i>Credit Card</span></label><input
+              id="payment-method-paypal" type="radio" name="payment-method" value="paypal" /><label for="payment-method-paypal"> <span><i class="fa fa-cc-paypal"></i>Paypal</span></label></div>
+          <div class="input-group input-group-icon"><input type="text" placeholder="Card Number" />
+            <div class="input-icon"><i class="fa fa-credit-card"></i></div>
+          </div>
+          <div class="col-half">
+            <div class="input-group input-group-icon"><input type="text" placeholder="Card CVC" />
+              <div class="input-icon"><i class="fa fa-user"></i></div>
+            </div>
+          </div>
+          <div class="col-half">
+            <div class="input-group"><select>
+                <option>01 Jan</option>
+                <option>02 Jan</option>
+              </select><select>
+                <option>2015</option>
+                <option>2016</option>
+              </select></div>
+          </div>
+        </div>
+      </form>
+      <form class="" action="/profile/campaigns/<%=campaignID%>" method="get">
+        <button class="btn-submit btn btn-lg" type="submit" name="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="map">
+      <div id="map"></div>
+
+      <script type="text/javascript">
+        let map;
+        var chosenBillboards = [];
+
+        function initMap() {
+          map = new google.maps.Map(document.getElementById("map"), {
+            center: {
+              lat: 30.033333,
+              lng: 31.233334
+            },
+            zoom: 10,
+          });
+
+          var marker, i;
+          var markers = [];
+
+          <% for (i = 0; i < dataArr.length; i++) { %>
+
+            marker = new google.maps.Marker({
+              position: new google.maps.LatLng( <%= dataArr[i][3] %> , <%= dataArr[i][4] %>),
+              icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+              }
+            });
+
+            google.maps.event.addListener(marker, 'click', (function(marker) {
+              return function() {
+
+                var contentString = "Price: " + "<%=dataArr[i][2]%>";
+                var infowindow = new google.maps.InfoWindow({
+                  content: contentString
+                });
+              }
+            })(marker));
+
+            markers.push(marker);
+            marker.setMap(map);
+        <% } %>
+        }
+      </script>
+
+      <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbaquDx8y6rEsF3pDbMJuoY-uhD3jHEO8&callback=initMap&libraries=&v=weekly" async></script>
+  </div>
+</section>
+
+<%- include("partials/footer") -%>

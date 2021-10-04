@@ -1,0 +1,200 @@
+<%- include("partials/header-purple") -%>
+
+<link rel="stylesheet" href="css/services.css">
+
+<section id="start-campaign">
+
+  <div class="campaign-text">
+    <h1 class="campaign-heading">Start Your Advertising Campaign <br>Right Now!</h1>
+    <p class="campaign-paragraph">Reach new customers in a big way. Expand your marketing
+      mix and grow your <br>business with digital billboard space anytime, anywhere, on any budget.
+      Over<br> 300 locations and counting.</p>
+  </div>
+  <% if(auth) { %>
+    <a class="btn-title" href="/process">
+      <button type="button" class="btn-campaign btn btn-lg">Get Started <i class="fas fa-angle-right"></i></button>
+    </a>
+  <% } else { %>
+    <a class="btn-title" href="/login">
+      <button type="button" class="btn-campaign btn btn-lg">Get Started <i class="fas fa-angle-right"></i></button>
+    </a>
+  <% } %>
+  <div class="campaign-div">
+    <img class="campaign-img" src="images/services.png" alt="">
+  </div>
+</section>
+
+<section id="process">
+
+  <div class="container-fluid blue-bg">
+    <div class="container">
+      <h2 class="pb-3 pt-2">Our Process</h2>
+      <!--first section-->
+      <div class="row align-items-center how-it-works">
+        <div class="col-2 text-center bottom">
+          <div class="circle">1</div>
+        </div>
+        <div class="col-6">
+          <h5>Basic Information</h5>
+          <p>First things first! Start by choosing your product name and length of your campaign</p>
+        </div>
+      </div>
+      <!--path between 1-2-->
+      <div class="row timeline">
+        <div class="col-2">
+          <div class="corner top-right"></div>
+        </div>
+        <div class="col-8">
+          <hr />
+        </div>
+        <div class="col-2">
+          <div class="corner left-bottom"></div>
+        </div>
+      </div>
+      <!--second section-->
+      <div class="row align-items-center justify-content-end how-it-works">
+        <div class="col-6 text-right">
+          <h5>Submit Ad Image</h5>
+          <p>
+            An image campaign is designed to create a specific identity in the minds of key audiences when
+            they think of a product. Submit your own identity in the campaign process.
+          </p>
+        </div>
+        <div class="col-2 text-center full">
+          <div class="circle">2</div>
+        </div>
+      </div>
+      <!--path between 2-3-->
+      <div class="row timeline">
+        <div class="col-2">
+          <div class="corner right-bottom"></div>
+        </div>
+        <div class="col-8">
+          <hr />
+        </div>
+        <div class="col-2">
+          <div class="corner top-left"></div>
+        </div>
+      </div>
+      <!--third section-->
+      <div class="row align-items-center how-it-works">
+        <div class="col-2 text-center top">
+          <div class="circle">3</div>
+        </div>
+        <div class="col-6">
+          <h5>Pick Billboards</h5>
+          <p>
+            Our billboard has base price that varies based on location and
+            number of viewers. Choose the billboards that fits your ad by double clicking on the red markers.
+            If you picked the wrong billboard don't worry, we got your back, you can remove this billboard
+            after submitting.
+          </p>
+        </div>
+      </div>
+      <!--path between 1-2-->
+      <div class="row timeline">
+        <div class="col-2">
+          <div class="corner top-right"></div>
+        </div>
+        <div class="col-8">
+          <hr />
+        </div>
+        <div class="col-2">
+          <div class="corner left-bottom"></div>
+        </div>
+      </div>
+      <!--second section-->
+      <div class="row align-items-center justify-content-end how-it-works">
+        <div class="col-6 text-right">
+          <h5>Choose Hours</h5>
+          <p>
+            Our day is divided into 6 4-hour slots, pick anyslot and its free of charge, if you pick more than one slot, the price will be multiplied by the total number of slots.
+          </p>
+        </div>
+        <div class="col-2 text-center full">
+          <div class="circle">4</div>
+        </div>
+      </div>
+      <!--path between 2-3-->
+      <div class="row timeline">
+        <div class="col-2">
+          <div class="corner right-bottom"></div>
+        </div>
+        <div class="col-8">
+          <hr />
+        </div>
+        <div class="col-2">
+          <div class="corner top-left"></div>
+        </div>
+      </div>
+      <!--third section-->
+      <div class="row align-items-center how-it-works">
+        <div class="col-2 text-center top">
+          <div class="circle">5</div>
+        </div>
+        <div class="col-6">
+          <h5>Adjust Frequency</h5>
+          <p>
+            Frequency is the number of times your ad will pop up during every slot(s) you picked,
+            the first 10 times are free of charge, after that each 10 times will cost 250 LE / billboard
+            for the length of your campaign.
+          </p>
+        </div>
+      </div>
+      <!--path between 1-2-->
+      <div class="row timeline">
+        <div class="col-2">
+          <div class="corner top-right"></div>
+        </div>
+        <div class="col-8">
+          <hr />
+        </div>
+        <div class="col-2">
+          <div class="corner left-bottom"></div>
+        </div>
+      </div>
+      <!--second section-->
+      <div class="row align-items-center justify-content-end how-it-works">
+        <div class="col-6 text-right">
+          <h5>Display Seconds</h5>
+          <p>
+            Choose the number of seconds your ad will be displayed every time it pops up!
+            The first 5 seconds are free of charge, each 5 seconds after that will cost 500 LE / billboard
+            for the length of your campaign.
+          </p>
+        </div>
+        <div class="col-2 text-center full">
+          <div class="circle">6</div>
+        </div>
+      </div>
+      <!--path between 2-3-->
+      <div class="row timeline">
+        <div class="col-2">
+          <div class="corner right-bottom"></div>
+        </div>
+        <div class="col-8">
+          <hr />
+        </div>
+        <div class="col-2">
+          <div class="corner top-left"></div>
+        </div>
+      </div>
+      <!--third section-->
+      <div class="row align-items-center how-it-works">
+        <div class="col-2 text-center top">
+          <div class="circle">7</div>
+        </div>
+        <div class="col-6">
+          <h5>Review</h5>
+          <p>
+            You're almost there! Review your information and make sure your campaign is optimized for success,
+            then insert your payment information and submit. Voila! your campaign has been created and waiting for
+            approval.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include("partials/footer") -%>

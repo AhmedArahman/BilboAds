@@ -1,0 +1,431 @@
+html {
+scroll-behavior: smooth;
+}
+/* Section: Billboards */
+
+body {
+  overflow-x: hidden;
+}
+
+#billboards {
+  padding: 15% 5% 5% 5%;
+  background-color: #1e1e1e;
+}
+
+.map {
+  padding: 0 7%;
+}
+
+.billboards-hr {
+  position: relative;
+  border: none;
+  height: 12px;
+  width: 200px;
+  background: #fff;
+  display: inline-block;
+}
+
+.billboards-text {
+  color: #A7D129;
+  font-family: 'Poppins', sans-serif;
+  padding-bottom: 3%;
+}
+
+.billboards-heading {
+  font-size: 2rem;
+}
+
+.billboards-paragraph {
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding-top: 2%;
+}
+
+.post-container {
+    margin: 20px 20px 0 0;
+    overflow: auto;
+}
+.post-thumb img {
+    display: block;
+    height:150px;
+    width: 250px;
+}
+.post-title {
+    font-weight: bold;
+    font-size: 200%
+}
+
+#map {
+  height: 500px;
+  width: 500px;
+}
+
+.form-padding {
+  padding-bottom: 10%;
+}
+
+.btn-submit {
+  background-color: #A7D129;
+  position: relative;
+  left: 180px;
+  top: 50px;
+}
+
+.btn-submit:hover {
+  background-color: #616F39;
+  transition: 0.5s;
+  color: #fff;
+}
+
+.btn-delete {
+  background-color: #A7D129;
+  margin-left: 25px;
+}
+
+.btn-delete:hover {
+  background-color: #616F39;
+  transition: 0.5s;
+  color: #fff;
+}
+
+.btn-confirm {
+  background-color: #A7D129;
+  float: right;
+  position: relative;
+  top: -80px;
+}
+
+.btn-confirm:hover {
+  background-color: #616F39;
+  transition: 0.5s;
+  color: #fff;
+}
+
+.confirm-padding {
+  padding: 0 14% 5%;
+}
+
+.table-div {
+  position: relative;
+  left: 550px;
+  top: -720px;
+}
+
+table {
+  position: absolute;
+	width: 750px;
+	border-collapse: collapse;
+	margin:50px auto;
+  font-family: 'Roboto', sans-serif;
+	}
+
+/* Zebra striping */
+tr:nth-of-type(odd) {
+	background: #000;
+	}
+
+th {
+	background: #000;
+	color: white;
+	font-weight: bold;
+	}
+
+td, th {
+  color: #fff;
+	padding: 10px;
+	border: 1px solid #ccc;
+	text-align: left;
+	font-size: 18px;
+	}
+
+/*
+Max width before this PARTICULAR table gets nasty
+This query will take effect for any screen smaller than 760px
+and also iPads specifically.
+*/
+@media
+only screen and (max-width: 760px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+	table {
+	  	width: 100%;
+	}
+
+	/* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr {
+		display: block;
+	}
+
+	/* Hide table headers (but not display: none;, for accessibility) */
+	thead tr {
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	tr { border: 1px solid #ccc; }
+
+	td {
+		/* Behave  like a "row" */
+		border: none;
+		border-bottom: 1px solid #eee;
+		position: relative;
+		padding-left: 50%;
+	}
+
+	td:before {
+		/* Now like a table header */
+		position: absolute;
+		/* Top/left values mimic padding */
+		top: 6px;
+		left: 6px;
+		width: 45%;
+		padding-right: 10px;
+		white-space: nowrap;
+		/* Label the data */
+		content: attr(data-column);
+
+		color: #000;
+		font-weight: bold;
+	}
+
+}
+
+/* Section: Schedule */
+
+#schedule {
+  padding: 15% 5% 12% 5%;
+  background-color: #1e1e1e;
+}
+
+.hours {
+  padding: 0 7% 3%;
+}
+
+.hours-hr {
+  position: relative;
+  top: 5px;
+  border: none;
+  height: 12px;
+  width: 200px;
+  background: #fff;
+  display: inline-block;
+}
+
+.hours-heading {
+  font-family: "Roboto", sans-serif;
+  color: #A7D129;
+}
+
+.hours-paragraph {
+  color: #A7D129;
+  font-family: 'Roboto', sans-serif;
+  font-weight: bold;
+  font-size: 1.2rem;
+  padding: 2% 0;
+}
+
+.hours-label {
+  font-family: "Roboto", sans-serif;
+  color: #A7D129;
+  font-size: 1.3rem;
+  padding-left: 1%;
+  position: relative;
+  top: -10px;
+}
+
+.hours-btn-position {
+  display: flex;
+  justify-content: center;
+}
+
+.hours-btn {
+  background-color: #A7D129;
+  color: #fff;
+}
+
+.hours-btn:hover {
+  background-color: #616F39;
+  transition: 0.5s;
+  color: #fff;
+}
+
+.frequency {
+  padding: 0 7% 3%;
+}
+
+.seconds {
+  padding: 0 7% 3%;
+}
+
+/* Section: footer */
+
+footer {
+    background-color: #000;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+}
+
+.hide-footer {
+  visibility: hidden;
+}
+
+.footer-heading {
+  font-family: 'Roboto', sans-serif;
+  color: #A7D129;
+  line-height: 100px;
+  padding-left: 10%;
+}
+
+/* Unmodifiable */
+
+/* select */
+
+.pad {
+  padding-top: 3%;
+}
+
+.custom-select {
+  position: relative;
+  display: block;
+  max-width: 400px;
+  min-width: 180px;
+  margin: 0 auto;
+  border: 1px solid #000;
+  background-color: #A7D129;
+  z-index: 0;
+}
+select {
+  border: none;
+  outline: none;
+  background: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  margin: 0;
+  display: block;
+  width: 100%;
+  font-size: 14px;
+  color: #fff;
+}
+select:after {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 50px;
+  height: 100%;
+  line-height: 38px;
+  content: '\2228';
+  text-align: center;
+  color: #A7D129;
+  font-size: 24px;
+  border-left: 1px solid #000;
+  z-index: -1;
+}
+select option {
+  background-color: #A7D129;
+  color: #fff;
+}
+
+/* checkboxes */
+
+.plus-minus {
+  --primary: #A7D129;
+  --secondary: #000;
+  --duration: 0.5s;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  outline: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  perspective: 240px;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  border: 4px solid var(--primary);
+  background-size: 300% 300%;
+  transition: transform 0.3s;
+  transform: scale(var(--scale, 1)) translateZ(0);
+  animation: var(--name, unchecked) var(--duration) ease forwards;
+}
+.plus-minus:before, .plus-minus:after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: var(--height, 16px);
+  left: 6px;
+  top: var(--top, 6px);
+  background: var(--background, var(--primary));
+  animation: var(--name-icon-b, var(--name-icon, unchecked-icon)) var(--duration) ease forwards;
+}
+.plus-minus:before {
+  clip-path: polygon(0 6px, 6px 6px, 6px 0, 10px 0, 10px 6px, 16px 6px, 16px 10px, 10px 10px, 10px 16px, 6px 16px, 6px 10px, 0 10px);
+}
+.plus-minus:after {
+  --height: 4px;
+  --top: 12px;
+  --background: var(--secondary);
+  --name-icon-b: var(--name-icon-a, checked-icon);
+}
+.plus-minus:active {
+  --scale: 0.95;
+}
+.plus-minus:checked {
+  --name: checked;
+  --name-icon-b: checked-icon;
+  --name-icon-a: unchecked-icon;
+}
+@keyframes checked-icon {
+  from {
+    transform: translateZ(12px);
+  }
+  to {
+    transform: translateX(16px) rotateY(90deg) translateZ(12px);
+  }
+}
+@keyframes unchecked-icon {
+  from {
+    transform: translateX(-16px) rotateY(-90deg) translateZ(12px);
+  }
+  to {
+    transform: translateZ(12px);
+  }
+}
+@keyframes checked {
+  from {
+    background-image: radial-gradient(ellipse at center, var(--primary) 0%, var(--primary) 25%, var(--secondary) 25.1%, var(--secondary) 100%);
+    background-position: 100% 50%;
+  }
+  to {
+    background-image: radial-gradient(ellipse at center, var(--primary) 0%, var(--primary) 25%, var(--secondary) 25.1%, var(--secondary) 100%);
+    background-position: 50% 50%;
+  }
+}
+@keyframes unchecked {
+  from {
+    background-image: radial-gradient(ellipse at center, var(--secondary) 0%, var(--secondary) 25%, var(--primary) 25.1%, var(--primary) 100%);
+    background-position: 100% 50%;
+  }
+  to {
+    background-image: radial-gradient(ellipse at center, var(--secondary) 0%, var(--secondary) 25%, var(--primary) 25.1%, var(--primary) 100%);
+    background-position: 50% 50%;
+  }
+}
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+* {
+  box-sizing: inherit;
+}
+*:before, *:after {
+  box-sizing: inherit;
+}

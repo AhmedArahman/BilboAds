@@ -1,0 +1,30 @@
+<%- include("partials/header-purple") -%>
+
+<link rel="stylesheet" href="css/edit-profile.css">
+
+<section id="edit-page">
+
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+
+      <!-- Icon -->
+      <div class="fadeIn first edit-icon">
+        <img src="images/register.png" alt="">
+      </div>
+
+      <!-- Edit Form -->
+      <form class="" action="" method="POST">
+        <div class="edit-email">
+          <input type="text" id="oldAtt" class="fadeIn second" name="oldAtt" placeholder="<%= value %>" required>
+        </div>
+        <div class="edit-password">
+          <input type="text" id="newAtt" class="fadeIn third" name="newAtt" placeholder="New <%= value %>" required>
+        </div>
+        <input type="submit" class="fadeIn fifth" value="Submit">
+      </form>
+
+    </div>
+  </div>
+
+</section>

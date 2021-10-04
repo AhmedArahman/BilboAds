@@ -1,0 +1,64 @@
+html {
+scroll-behavior: smooth;
+}
+#cost {
+  padding: 12% 5% 5%;
+  background-color: #1e1e1e;
+  color: #A7D129;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+}
+
+.maps-hr {
+  position: relative;
+  top: 10px;
+  border: none;
+  height: 12px;
+  width: 200px;
+  background: #616F39;
+  display: inline-block;
+}
+
+.cost-heading {
+  font-size: 3.5rem;
+  color: #fff;
+}
+
+.features {
+  padding-top: 5%;
+  text-align: center;
+}
+
+.feature {
+  padding-bottom: 3%;
+}
+
+.features-icon {
+  padding-bottom: 1rem;
+  color: #A7D129;
+}
+
+.features-icon:hover {
+  color: #616F39;
+  transition: color 200ms linear;
+}
+
+.features p {
+  color: #fff;
+}
+
+.cost-btn {
+  background-color: #A7D129;
+  color: #fff;
+}
+
+.cost-btn:hover {
+  background-color: #616F39;
+  transition: 0.5s;
+  color: #fff;
+}
+
+#map {
+  height: 500px;
+  width: 500px;
+}

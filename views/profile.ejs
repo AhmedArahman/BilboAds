@@ -1,0 +1,137 @@
+<%- include("partials/header-purple") %>
+
+<link rel="stylesheet" href="css/profile.css">
+
+<div class="container">
+  <table>
+    <tr>
+      <td>
+        <section>
+          <img src="https://i.ibb.co/yNGW4gg/avatar.png" id="blah" alt="Avatar">
+        </section>
+        <h1><%= foundUser[0].fName %> <%= foundUser[0].lName %></h1>
+        <a href="/logout" id="logout" class="nav-link anchor">
+          <button class="btn-nav btn-lg" type="button" name="button">Logout</button>
+        </a>
+      </td>
+      <td>
+        <ul>
+          <li>
+            <b>First name</b>
+            <input type="text" name="fname" id="fname" maxlength="100" value="<%= foundUser[0].fName %>" required />
+            <form class="" action="/edit-profile/1" method="get">
+              <button style="" class="fabutton" type="submit" name="changeFirstName" id="changeFirstName" onclick="">
+                <i class="fa fa-edit fa-name" name="changeFirstName" id="changeFirstName"></i>
+              </button>
+            </form>
+          </li>
+          <li>
+            <b>Last name</b>
+            <input type="text" name="lname" id="lname" maxlength="100" value="<%= foundUser[0].lName %>" required />
+            <form class="" action="/edit-profile/2" method="get">
+              <button style="" class="fabutton" type="submit" name="changeLastName" id="changeLastName" onclick="">
+                <i class="fa fa-edit fa-name" name="changeLastName" id="changeLastName"></i>
+              </button>
+            </form>
+          </li>
+          <li>
+            <b>Email</b>
+            <input type="email" name="email" id="email" maxlength="150" value="<%=foundUser[0].username%>" required />
+          </li>
+          <li>
+            <b>Password</b>
+            <input type="password" name="password" id="password" maxlength="10" value="<%=foundUser[0].passwordUnhashed%>" required />
+            <form class="" action="/edit-profile/6" method="get">
+              <button style="" class="fabutton" type="submit" name="changePassword" id="changePassword" onclick="">
+                <i class="fa fa-edit fa-name"></i>
+              </button>
+            </form>
+          </li>
+          <li>
+            <b>Contact Number</b>
+            <input type="text" name="phoneNumber" id="phoneNumber" maxlength="250" value="<%=foundUser[0].phone%>" required />
+            <form class="" action="/edit-profile/4" method="get">
+              <button style="" class="fabutton" type="submit" name="changePhoneNumber" id="changePhoneNumber" onclick="">
+                <i class="fa fa-edit fa-name"></i>
+              </button>
+            </form>
+          </li>
+          <li>
+            <b>Company</b>
+            <input type="text" name="companyName" id="companyName" maxlength="250" value="<%=foundUser[0].company%>" required />
+            <form class="" action="/edit-profile/3" method="get">
+              <button style="" class="fabutton" type="submit" name="changeCompanyName" id="changeCompanyName" onclick="">
+                <i class="fa fa-edit fa-name"></i>
+              </button>
+            </form>
+          </li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td style="text-align:left;" class="inframe">
+        <h2>Old Campaigns:</h2>
+        <h3><%= campaignNumber[0] %> campaigns</h3><br>
+        <h2 >Running Campaigns:</h2>
+         <h3><%= campaignNumber[1] %> campaigns</h3> <br>
+        <h2>Upcoming Campaigns:</h2>
+         <h3><%= campaignNumber[2] %> campaigns</h3> <br>
+      </td>
+      <td class="inframe" colspan="">
+        <h2>Campaigns</h2>
+        <% if(foundUser[0].campaigns.length > 0) { %>
+          <div id="testimonial-carousel" class="carousel slide" data-ride="false">
+            <div class="carousel-inner">
+              <% if(foundUser[0].campaigns.length > 0) { %>
+              <% for(var i = 0; i < foundUser[0].campaigns.length; i++) { %>
+              <% if(i === 0) { %>
+              <div class="carousel-item active container-fluid">
+                <% } else { %>
+                <div class="carousel-item container-fluid">
+                  <% } %>
+                  <div class="card">
+                    <img src="data:image/<%=foundUser[0].campaigns[i].img.img.contentType%>;base64,
+                        <%=foundUser[0].campaigns[i].img.img.data.toString('base64')%>">
+                    <section class="card_content">
+                      <ul>
+                        <li> <b>Product Name: </b><%=foundUser[0].campaigns[i].productName%></li>
+                        <li> <b>Billboards: </b><%=foundUser[0].campaigns[i].billboards.length%></li>
+                        <li> <b>Hours: </b><%=foundUser[0].campaigns[i].hoursDisplayed%></li>
+                        <li> <b>Frequency: </b><%=foundUser[0].campaigns[i].frequency%></li>
+                        <li> <b>Seconds: </b><%=foundUser[0].campaigns[i].secondsDisplayed%></li>
+                        <li> <b>Price: </b><%=foundUser[0].campaigns[i].price%></li>
+                        <li> <b>Start Date: </b><%=foundUser[0].campaigns[i].startDate%></li>
+                        <li> <b>End Date: </b><%=foundUser[0].campaigns[i].endDate%></li>
+                        <% if(approvedCampaigns.includes(foundUser[0].campaigns[i].id)) { %>
+                            <li> <b>Status: </b>Approved</li>
+                        <% } else { %>
+                            <li> <b>Status: </b>Pending</li>
+                        <% } %>
+                      </ul>
+                      <a class="btn-header" id="login" class="nav-link" href="/profile/campaigns/<%=foundUser[0].campaigns[i]._id%>">
+                        <button class="btn">SEE MORE</button>
+                      </a>
+                    </section>
+                  </div>
+                </div>
+                <% } %>
+                <% } %>
+              </div>
+              <a class="carousel-control-prev" href="#testimonial-carousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+              </a>
+              <a class="carousel-control-next" href="#testimonial-carousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+              </a>
+            </div>
+          </div>
+        <% } else { %>
+              <h3 style="text-align:center; padding-top:100px;">There are no campaigns yet!</h3>
+        <% } %>
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+
+</html>

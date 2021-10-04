@@ -1,0 +1,749 @@
+<%- include("partials/header-purple") -%>
+
+<link rel="stylesheet" href="css/process.css">
+
+<% if(showProduct) { %>
+<section id="basic-information">
+
+  <div class="process">
+    <div class="row pgb p-0 mt-3">
+      <div class="col step active p-0">
+        <p>1</p>
+        <span class="img-circle"></span>
+      </div>
+      <div class="col step p-0">
+        <p>2</p>
+        <span class="img-circle"></span>
+      </div>
+      <div class="col step p-0">
+        <p>3</p>
+        <span class="img-circle"></span>
+      </div>
+      <div class="col step p-0">
+        <p>4</p>
+        <span class="img-circle"></span>
+      </div>
+      <div class="col step p-0">
+        <p>5</p>
+        <span class="img-circle"></span>
+      </div>
+    </div>
+    <div class="row pgb p-0">
+      <div class="col text-center">
+        <h2>Information</h2>
+      </div>
+      <div class="col text-center">
+        <h2>Ad Image</h2>
+      </div>
+      <div class="col text-center active">
+        <h2>Locations</h2>
+      </div>
+      <div class="col text-center active">
+        <h2>Schedule</h2>
+      </div>
+      <div class="col text-center active">
+        <h2>Review</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="basic-information-text">
+    <hr class="basic-information-hr">
+    <h3 class="basic-information-heading">
+      First things first! Start by choosing your product name and length of your campaign
+    </h3>
+    <div class="">
+      <form action="/process/1" method="POST">
+        <div class="basic-information-product">
+          <label class="field field_v1">
+            <input name="productName" id="productName" class="color field__input" placeholder="e.g. Juhayna" required>
+            <span class="field__label-wrap">
+              <span class="field__label">Product Name</span>
+            </span>
+          </label>
+        </div>
+        <div class="basic-information-start-date">
+          <label for="startDate">Start Date:</label> <br>
+          <input type="date" id="startDate" name="startDate" value="" required>
+        </div>
+        <div class="basic-information-end-date">
+          <label for="endDate">End Date:</label> <br>
+          <input type="date" id="endDate" name="endDate" value="" required>
+        </div>
+        <div class=" basic-information-button">
+          <button type="submit" class="btn btn-lg">Submit</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    startDate.addEventListener('change', function() {
+      if (startDate.value) endDate.min = startDate.value;
+    }, false);
+
+    var today = new Date().toISOString().split('T')[0];
+    document.getElementsByName("startDate")[0].setAttribute('min', today);
+  </script>
+
+</section>
+<% } %>
+
+<% if(showImage) { %>
+<section id="image-section">
+
+  <div class="process">
+    <div class="row pgb p-0 mt-3">
+      <div class="col step complete p-0">
+        <p>1</p>
+        <span class="img-circle"></span>
+      </div>
+      <div class="col step active p-0">
+        <p>2</p>
+        <span class="img-circle"></span>
+      </div>
+      <div class="col step p-0">
+        <p>3</p>
+        <span class="img-circle"></span>
+      </div>
+      <div class="col step p-0">
+        <p>4</p>
+        <span class="img-circle"></span>
+      </div>
+      <div class="col step p-0">
+        <p>5</p>
+        <span class="img-circle"></span>
+      </div>
+    </div>
+    <div class="row pgb p-0">
+      <div class="col text-center">
+        <h2>Information</h2>
+      </div>
+      <div class="col text-center">
+        <h2>Ad Image</h2>
+      </div>
+      <div class="col text-center active">
+        <h2>Locations</h2>
+      </div>
+      <div class="col text-center active">
+        <h2>Schedule</h2>
+      </div>
+      <div class="col text-center active">
+        <h2>Review</h2>
+      </div>
+    </div>
+  </div>
+
+  <hr class="submit-image-hr">
+
+  <h3 class="submit-image-heading">
+    An image campaign is designed to create a specific identity in the minds of key audiences when
+    they think of a product. Submit your own identity in the square below.
+  </h3>
+
+  <div class="submit-image">
+    <form action="/process/2" method="post" enctype="multipart/form-data" id="image-form" class="uploader">
+      <input id="image" type="file" name="image" accept="image/*" required/>
+
+      <label for="image" id="file-drag">
+        <img id="file-image" src="#" alt="Preview" class="hidden">
+        <div id="start">
+          <i class="fa fa-download" aria-hidden="true"></i>
+          <div>Select a file or drag here</div>
+          <div id="notimage" class="hidden">Please select an image</div>
+          <span id="image-btn" class="btn btn-primary">Select a file</span>
+        </div>
+        <div id="response" class="hidden">
+          <div id="messages"></div>
+          <progress class="progress" id="file-progress" value="0">
+            <span>0</span>%
+          </progress>
+        </div>
+      </label>
+      <button type="submit" class="btn btn-lg">Submit</button>
+    </form>
+  </div>
+
+  <div class="">
+    <% if(image) { %>
+    <div>
+      <div>
+        <img src="data:image/<%=image[0].img.contentType%>;base64,
+            <%=image[0].img.data.toString('base64')%>">
+      </div>
+    </div>
+    <% } %>
+  </div>
+</section>
+
+<script type="text/javascript">
+  // File Upload
+  //
+  function ekUpload() {
+    function Init() {
+
+      console.log("Upload Initialised");
+
+      var fileSelect = document.getElementById('image'),
+        fileDrag = document.getElementById('file-drag'),
+        submitButton = document.getElementById('submit-button');
+
+      fileSelect.addEventListener('change', fileSelectHandler, false);
+
+      // Is XHR2 available?
+      var xhr = new XMLHttpRequest();
+      if (xhr.upload) {
+        // File Drop
+        fileDrag.addEventListener('dragover', fileDragHover, false);
+        fileDrag.addEventListener('dragleave', fileDragHover, false);
+        fileDrag.addEventListener('drop', fileSelectHandler, false);
+      }
+    }
+
+    function fileDragHover(e) {
+      var fileDrag = document.getElementById('file-drag');
+
+      e.stopPropagation();
+      e.preventDefault();
+
+      fileDrag.className = (e.type === 'dragover' ? 'hover' : 'modal-body image');
+    }
+
+    function fileSelectHandler(e) {
+      // Fetch FileList object
+      var files = e.target.files || e.dataTransfer.files;
+
+      // Cancel event and hover styling
+      fileDragHover(e);
+
+      // Process all File objects
+      for (var i = 0, f; f = files[i]; i++) {
+        parseFile(f);
+        uploadFile(f);
+      }
+    }
+
+    // Output
+    function output(msg) {
+      // Response
+      var m = document.getElementById('messages');
+      m.innerHTML = msg;
+    }
+
+    function parseFile(file) {
+
+      console.log(file.name);
+      output(
+        '<strong>' + encodeURI(file.name) + '</strong>'
+      );
+
+      // var fileType = file.type;
+      // console.log(fileType);
+      var imageName = file.name;
+
+      var isGood = (/\.(?=gif|jpg|png|jpeg)/gi).test(imageName);
+      if (isGood) {
+        document.getElementById('start').classList.add("hidden");
+        document.getElementById('response').classList.remove("hidden");
+        document.getElementById('notimage').classList.add("hidden");
+        // Thumbnail Preview
+        document.getElementById('file-image').classList.remove("hidden");
+        document.getElementById('file-image').src = URL.createObjectURL(file);
+      } else {
+        document.getElementById('file-image').classList.add("hidden");
+        document.getElementById('notimage').classList.remove("hidden");
+        document.getElementById('start').classList.remove("hidden");
+        document.getElementById('response').classList.add("hidden");
+        document.getElementById("image-form").reset();
+      }
+    }
+
+    function setProgressMaxValue(e) {
+      var pBar = document.getElementById('file-progress');
+
+      if (e.lengthComputable) {
+        pBar.max = e.total;
+      }
+    }
+
+    function updateFileProgress(e) {
+      var pBar = document.getElementById('file-progress');
+
+      if (e.lengthComputable) {
+        pBar.value = e.loaded;
+      }
+    }
+
+    function uploadFile(file) {
+
+      var xhr = new XMLHttpRequest(),
+        fileInput = document.getElementById('class-roster-file'),
+        pBar = document.getElementById('file-progress'),
+        fileSizeLimit = 1024; // In MB
+      if (xhr.upload) {
+        // Check if file is less than x MB
+        if (file.size <= fileSizeLimit * 1024 * 1024) {
+          // Progress bar
+          pBar.style.display = 'inline';
+          xhr.upload.addEventListener('loadstart', setProgressMaxValue, false);
+          xhr.upload.addEventListener('progress', updateFileProgress, false);
+
+          // File received / failed
+          xhr.onreadystatechange = function(e) {
+            if (xhr.readyState == 4) {
+              // Everything is good!
+
+              // progress.className = (xhr.status == 200 ? "success" : "failure");
+              // document.location.reload(true);
+            }
+          };
+
+          // Start upload
+          xhr.open('POST', document.getElementById('image-form').action, true);
+          xhr.setRequestHeader('X-File-Name', file.name);
+          xhr.setRequestHeader('X-File-Size', file.size);
+          xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+          xhr.send(file);
+        } else {
+          output('Please upload a smaller file (< ' + fileSizeLimit + ' MB).');
+        }
+      }
+    }
+
+    // Check for the various File API support.
+    if (window.File && window.FileList && window.FileReader) {
+      Init();
+    } else {
+      document.getElementById('file-drag').style.display = 'none';
+    }
+  }
+  ekUpload();
+</script>
+<% } %>
+
+<% if(showMaps) { %>
+<section id="billboards">
+
+  <div class="process">
+    <div class="row pgb p-0 mt-3">
+      <div class="col step complete p-0">
+        <p>1</p>
+        <span class="img-circle"></span>
+      </div>
+      <div class="col step complete p-0">
+        <p>2</p>
+        <span class="img-circle"></span>
+      </div>
+      <div class="col step active p-0">
+        <p>3</p>
+        <span class="img-circle"></span>
+      </div>
+      <div class="col step p-0">
+        <p>4</p>
+        <span class="img-circle"></span>
+      </div>
+      <div class="col step p-0">
+        <p>5</p>
+        <span class="img-circle"></span>
+      </div>
+    </div>
+    <div class="row pgb p-0">
+      <div class="col text-center">
+        <h2>Information</h2>
+      </div>
+      <div class="col text-center">
+        <h2>Ad Image</h2>
+      </div>
+      <div class="col text-center active">
+        <h2>Locations</h2>
+      </div>
+      <div class="col text-center active">
+        <h2>Schedule</h2>
+      </div>
+      <div class="col text-center active">
+        <h2>Review</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="map">
+
+    <hr class="billboards-hr">
+
+    <div class="billboards-text">
+      <h3 class="billboards-heading">Choose billboards that reach your potential customers.</h3>
+      <p class="billboards-paragraph">Our billboard has base price that varies based on location and
+      number of viewers. Choose the billboards that fits your ad by double clicking on the red markers.
+      If you picked the wrong billboard don't worry, we got your back, you can remove this billboard
+      after submitting.</p>
+    </div>
+
+
+
+    <div id="map"></div>
+
+    <form class="form-padding" action="/process/3" method="post">
+      <input type="hidden" id="myField" name="myField" value="" />
+      <button type="submit" name="submitMaps" class="btn-submit btn btn-lg">Submit</button>
+    </form>
+
+    <div class="table-div">
+      <% if(dataArr.length != 0) { %>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Address</th>
+              <th>Governorate</th>
+              <th>Price/Slot</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% for(var i = 0; i < dataArr.length;i++) { %>
+              <tr>
+                <td data-column="ID"><%= dataArr[i][0] %></td>
+                <td data-column="Address"><%= dataArr[i][5] %></td>
+                <td data-column="Governorate"><%= dataArr[i][1] %></td>
+                <td data-column="Price"><%= dataArr[i][2] %> LE</td>
+                <td data-column="Delete">
+                  <form class="" action="/process/6" method="post">
+                    <input type="hidden" id="delete" name="delete" value="<%= i %>" />
+                    <button type="submit" name="submit" class="btn-delete btn btn-lg">
+                      <i class="fas fa-trash-alt"></i> Delete
+                    </button>
+                  </form>
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      <% } %>
+    </div>
+
+
+    <script type="text/javascript">
+      let map;
+      var chosenBillboards = [];
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+          center: {
+            lat: 30.033333,
+            lng: 31.233334
+          },
+          zoom: 10,
+        });
+
+        var marker, i;
+        var markers = [];
+
+        <% for (i = 0; i < billboards.length; i++) { %>
+
+          marker = new google.maps.Marker({
+            position: new google.maps.LatLng( <%= billboards[i].latitude %> , <%= billboards[i].longitude %>),
+            icon: {
+              url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+            }
+          });
+
+          google.maps.event.addListener(marker, 'dblclick', (function(marker) {
+            return function() {
+
+              var contentString = "<p></p>" +
+                                  "<div class='post-container'><div class='post-thumb'><img src='images/bilbo" + <%=i%> + ".jpg' /></div><div class='post-content'><br/><p>ID: <%= billboards[i].id %></p><p>Address: <%=billboards[i].address %></p><p>Governorate: <%=billboards[i].state %></p><p>Price: <%=billboards[i].price %></p></div></div>";
+              var infowindow = new google.maps.InfoWindow({
+                content: contentString,
+                maxWidth: 300
+              });
+
+              marker.setIcon('http://maps.google.com/mapfiles/ms/micons/green.png')
+
+              //marker.addListener("click", (evt) => {
+              <%  if (billboardsID.includes(billboards[i].id)) { %>
+                  alert("Billboard already picked!");
+              <% } else { %>
+                  chosenBillboards.push("<%= billboards[i].id %>");
+                  let uniqueBillboards = [...new Set(chosenBillboards)];
+                  document.getElementById('myField').value = uniqueBillboards;
+              <% } %>
+
+                if (map !== null && typeof map !== "undefined"){
+                    infowindow.open(map, marker);
+                } else {
+                    infowindow.close();
+                }
+              //});
+            }
+          })(marker));
+
+          markers.push(marker);
+          marker.setMap(map);
+      <% } %>
+
+      <% for (var i = 0; i < dataArr.length; i++) { %>
+          for (var j = 0; j < markers.length; j++) {
+            if ( <%= dataArr[i][3] %> === markers[j].getPosition().lat()) {
+              if ( <%= dataArr[i][4] %> === markers[j].getPosition().lng()) {
+                markers[j].setIcon('http://maps.google.com/mapfiles/ms/micons/green.png');
+              }
+            }
+
+
+          }
+      <% } %>
+      }
+    </script>
+
+    <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbaquDx8y6rEsF3pDbMJuoY-uhD3jHEO8&callback=initMap&libraries=&v=weekly" async></script>
+
+  </div>
+</section>
+<% } %>
+
+<% if(showSchedule) { %>
+<section id="schedule">
+
+  <div class="process">
+    <div class="row pgb p-0 mt-3">
+      <div class="col step complete p-0">
+        <p>1</p>
+        <span class="img-circle"></span>
+      </div>
+      <div class="col step complete p-0">
+        <p>2</p>
+        <span class="img-circle"></span>
+      </div>
+      <div class="col step complete p-0">
+        <p>3</p>
+        <span class="img-circle"></span>
+      </div>
+      <div class="col step active p-0">
+        <p>4</p>
+        <span class="img-circle"></span>
+      </div>
+      <div class="col step p-0">
+        <p>5</p>
+        <span class="img-circle"></span>
+      </div>
+    </div>
+    <div class="row pgb p-0">
+      <div class="col text-center">
+        <h2>Information</h2>
+      </div>
+      <div class="col text-center">
+        <h2>Ad Image</h2>
+      </div>
+      <div class="col text-center active">
+        <h2>Locations</h2>
+      </div>
+      <div class="col text-center active">
+        <h2>Schedule</h2>
+      </div>
+      <div class="col text-center active">
+        <h2>Review</h2>
+      </div>
+    </div>
+  </div>
+
+  <div class="hours">
+    <hr class="hours-hr">
+    <h1 class="hours-heading">When do you want to display your Ad?</h1>
+    <p class="hours-paragraph">Our day is divided into 6 4-hour slots, pick any
+      slot and its free of charge, if you pick
+      more than one slot, the price will be multiplied by the total number of slots.</p>
+    <form class="time-box" action="/process/4" method="post">
+      <input class="plus-minus" type="checkbox" name="time1" id="time1" value="true">
+      <label class="hours-label" for="time1">00:00 - 04:00</label> <br>
+      <input class="plus-minus" type="checkbox" name="time2" id="time2" value="true">
+      <label class="hours-label" for="time2">04:00 - 08:00</label> <br>
+      <input class="plus-minus" type="checkbox" name="time3" id="time3" value="true">
+      <label class="hours-label" for="time3">08:00 - 12:00</label> <br>
+      <input class="plus-minus" type="checkbox" name="time4" id="time4" value="true">
+      <label class="hours-label" for="time4">12:00 - 16:00</label> <br>
+      <input class="plus-minus" type="checkbox" name="time5" id="time5" value="true">
+      <label class="hours-label" for="time5">16:00 - 20:00</label> <br>
+      <input class="plus-minus" type="checkbox" name="time6" id="time6" value="true">
+      <label class="hours-label" for="time6">20:00 - 00:00</label> <br>
+      <div class="hours-btn-position">
+        <button type="submit" class="hours-btn btn btn-lg">Submit</button>
+      </div>
+    </form>
+
+    <% for(var i = 0; i < checkboxValues.length; i++) { %>
+    <%  if(checkboxValues[i] === 1) { %>
+        <script type="text/javascript">
+          var j = <%= i %>;
+          $('.plus-minus')[j].checked = true;
+        </script>
+    <%  } %>
+    <% } %>
+  </div>
+
+  <div class="hours">
+    <hr class="hours-hr">
+    <h1 class="hours-heading">Frequency of your Ad</h1>
+    <p class="hours-paragraph">Frequency is the number of times your ad will pop up during every slot(s) you picked,
+    the first 10 times are free of charge, after that each 10 times will cost 250 LE / billboard
+    for the length of your campaign.</p>
+    <form class="pad"  id="frequency" action="/process/7" method="post">
+      <label class="custom-select" for="frequency">
+      <select id="frequency" name="frequency">
+        <% if (campaign.frequency === undefined) { %>
+          <option value="0">Choose frequency..</option>
+          <option value="10">10 times</option>
+          <option value="20">20 times</option>
+          <option value="30">30 times</option>
+          <option value="40">40 times</option>
+          <option value="50">50 times</option>
+          <option value="60">60 times</option>
+          <option value="70">70 times</option>
+          <option value="80">80 times</option>
+          <option value="90">90 times</option>
+          <option value="100">100 times</option>
+        <% } else { %>
+          <% if (campaign.frequency === "10") { %>
+            <option value="10" selected>10 times</option>
+          <% } else { %>
+            <option value="10">10 times</option>
+          <% } %>
+          <% if (campaign.frequency=== "20") { %>
+            <option value="20" selected>20 times</option>
+          <% } else { %>
+            <option value="20">20 times</option>
+          <% } %>
+          <% if (campaign.frequency === "30") { %>
+            <option value="30" selected>30 times</option>
+          <% } else { %>
+            <option value="30">30 times</option>
+          <% } %>
+          <% if (campaign.frequency === "40") { %>
+            <option value="40" selected>40 times</option>
+          <% } else { %>
+            <option value="40">40 times</option>
+          <% } %>
+          <% if (campaign.frequency === "50") { %>
+            <option value="50" selected>50 times</option>
+          <% } else { %>
+            <option value="50">50 times</option>
+          <% } %>
+          <% if (campaign.frequency === "60") { %>
+            <option value="60" selected>60 times</option>
+          <% } else { %>
+            <option value="60">60 times</option>
+          <% } %>
+          <% if (campaign.frequency === "70") { %>
+            <option value="70" selected>70 times</option>
+          <% } else { %>
+            <option value="70">70 times</option>
+          <% } %>
+          <% if (campaign.frequency === "80") { %>
+            <option value="80" selected>80 times</option>
+          <% } else { %>
+            <option value="80">80 times</option>
+          <% } %>
+          <% if (campaign.frequency === "90") { %>
+            <option value="90" selected>90 times</option>
+          <% } else { %>
+            <option value="90">90 times</option>
+          <% } %>
+          <% if (campaign.frequency === "100") { %>
+            <option value="100" selected>100 times</option>
+          <% } else { %>
+            <option value="100">100 times</option>
+          <% } %>
+        <% } %>
+      </select></label>
+      <!-- <input type="submit" class=""> -->
+    </form>
+  </div>
+
+  <div class="hours">
+    <hr class="hours-hr">
+    <h1 class="hours-heading">How much time your Ad should be displayed per minute?</h1>
+    <p class="hours-paragraph">Choose the number of seconds your ad will be displayed every time it pops up!
+    The first 5 seconds are free of charge, each 5 seconds after that will cost 500 LE / billboard
+    for the length of your campaign.</p>
+    <form class="pad" id="seconds" action="/process/5" method="post">
+      <label class="custom-select" for="seconds">
+      <select id="seconds" name="seconds">
+        <% if (campaign.secondsDisplayed === undefined) { %>
+            <option value="0">Pick a number..</option>
+            <option value="5">5 Seconds</option>
+            <option value="10">10 Seconds</option>
+            <option value="15">15 Seconds</option>
+            <option value="20">20 Seconds</option>
+            <option value="25">25 Seconds</option>
+            <option value="30">30 Seconds</option>
+        <% } else { %>
+          <% if (campaign.secondsDisplayed === "5") { %>
+            <option value="5" selected>5 Seconds</option>
+          <% } else { %>
+            <option value="5">5 Seconds</option>
+          <% } %>
+          <% if (campaign.secondsDisplayed === "10") { %>
+            <option value="10" selected>10 Seconds</option>
+          <% } else { %>
+            <option value="10">10 Seconds</option>
+          <% } %>
+          <% if (campaign.secondsDisplayed === "15") { %>
+            <option value="15" selected>15 Seconds</option>
+          <% } else { %>
+            <option value="15">15 Seconds</option>
+          <% } %>
+          <% if (campaign.secondsDisplayed === "20") { %>
+            <option value="20" selected>20 Seconds</option>
+          <% } else { %>
+            <option value="20">20 Seconds</option>
+          <% } %>
+          <% if (campaign.secondsDisplayed === "25") { %>
+            <option value="25" selected>25 Seconds</option>
+          <% } else { %>
+            <option value="25">25 Seconds</option>
+          <% } %>
+          <% if (campaign.secondsDisplayed === "30") { %>
+            <option value="30" selected>30 Seconds</option>
+          <% } else { %>
+            <option value="30">30 Seconds</option>
+          <% } %>
+        <% } %>
+      </select></label>
+    </form>
+  </div>
+
+  <script>
+    $('form select').on('change', function() {
+        $(this).closest('form').submit();
+    });
+  </script>
+</section>
+<% } %>
+
+<% if(showMaps || showSchedule) { %>
+  <footer class="">
+    <h3 class="footer-heading">Total Price: <%= price %> LE</h3>
+    <% if (showMaps) { %>
+      <form class="confirm-padding" action="/process/8" method="post">
+        <button id="confirm" type="submit" name="" class="btn-confirm btn btn-lg">Confirm</button>
+      </form>
+    <% } %>
+    <% if (showSchedule) { %>
+      <div class="confirm-padding">
+        <a href="/payment">
+          <button id="confirm2" type="button" class="btn-confirm btn btn-lg">Confirm</button>
+        </a>
+      </div>
+    <% } %>
+  </footer>
+
+  <script>
+    //if hoursDisplayed submit button is not pressed yet.
+    <% if (showMaps && dataArr.length === 0) { %>
+      $("#confirm").attr('disabled',true);
+    <% } %>
+    <% if (showSchedule && ( (typeof campaign.hoursDisplayed === 'undefined') || (typeof campaign.secondsDisplayed === 'undefined') || (typeof campaign.frequency === 'undefined'))) { %>
+      $("#confirm2").attr('disabled',true);
+    <% } %>
+  </script>
+<% } %>

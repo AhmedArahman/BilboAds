@@ -1,0 +1,346 @@
+<%- include("partials/header-purple") -%>
+
+<link rel="stylesheet" href="css/cost-estimator.css">
+
+    <% if(showMaps) { %>
+    <section id="billboards">
+
+      <div class="map">
+
+        <hr class="billboards-hr">
+
+        <div class="billboards-text">
+          <h3 class="billboards-heading">Choose billboards that reach your potential customers.</h3>
+          <p class="billboards-paragraph">Our billboard has base price that varies based on location and
+          number of viewers. Choose the billboards that fits your ad by double clicking on the red markers.
+          If you picked the wrong billboard don't worry, we got your back, you can remove this billboard
+          after submitting.</p>
+        </div>
+
+        <div id="map"></div>
+
+        <form class="form-padding" action="/cost-estimator/3" method="post">
+          <input type="hidden" id="myField" name="myField" value="" />
+          <button type="submit" name="submitMaps" class="btn-submit btn btn-lg">Submit</button>
+        </form>
+
+        <div class="table-div">
+          <% if(costArr.length != 0) { %>
+            <table>
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Address</th>
+                  <th>Governorate</th>
+                  <th>Price/Slot</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% for(var i = 0; i < costArr.length;i++) { %>
+                  <tr>
+                    <td data-column="ID"><%= costArr[i][0] %></td>
+                    <td data-column="Address"><%= costArr[i][5] %></td>
+                    <td data-column="Governorate"><%= costArr[i][1] %></td>
+                    <td data-column="Price"><%= costArr[i][2] %> LE</td>
+                    <td data-column="Delete">
+                      <form class="" action="/cost-estimator/6" method="post">
+                        <input type="hidden" id="delete" name="delete" value="<%= i %>" />
+                        <button type="submit" name="submit" class="btn-delete btn btn-lg">
+                          <i class="fas fa-trash-alt"></i> Delete
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                <% } %>
+              </tbody>
+            </table>
+          <% } %>
+        </div>
+
+
+        <script type="text/javascript">
+          let map;
+          var chosenBillboards = [];
+
+          function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+              center: {
+                lat: 30.033333,
+                lng: 31.233334
+              },
+              zoom: 10,
+            });
+
+            var marker, i;
+            var markers = [];
+
+            <% for (i = 0; i < billboards.length; i++) { %>
+
+              marker = new google.maps.Marker({
+                position: new google.maps.LatLng( <%= billboards[i].latitude %> , <%= billboards[i].longitude %>),
+                icon: {
+                  url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                }
+              });
+
+              google.maps.event.addListener(marker, 'dblclick', (function(marker) {
+                return function() {
+
+                  var contentString = "<p></p>" +
+                                      "<div class='post-container'><div class='post-thumb'><img src='images/bilbo" + <%=i%> + ".jpg' /></div><div class='post-content'><br/><p>ID: <%= billboards[i].id %></p><p>Address: <%=billboards[i].address %></p><p>Governorate: <%=billboards[i].state %></p><p>Price: <%=billboards[i].price %></p></div></div>";
+                  var infowindow = new google.maps.InfoWindow({
+                    content: contentString,
+                    maxWidth: 300
+                  });
+
+                  marker.setIcon('http://maps.google.com/mapfiles/ms/micons/green.png')
+
+                  //marker.addListener("click", (evt) => {
+                  <%  if (costBillboardsID.includes(billboards[i].id)) { %>
+                      alert("Billboard already picked!");
+                  <% } else { %>
+                    chosenBillboards.push("<%= billboards[i].id %>");
+                    let uniqueBillboards = [...new Set(chosenBillboards)];
+                    document.getElementById('myField').value = uniqueBillboards;
+                  <% } %>
+
+                    if (map !== null && typeof map !== "undefined"){
+                        infowindow.open(map, marker);
+                    } else {
+                        infowindow.close();
+                    }
+                  //});
+                }
+              })(marker));
+
+              markers.push(marker);
+              marker.setMap(map);
+          <% } %>
+
+          <% for (var i = 0; i < costArr.length; i++) { %>
+              for (var j = 0; j < markers.length; j++) {
+                if ( <%= costArr[i][3] %> === markers[j].getPosition().lat()) {
+                  if ( <%= costArr[i][4] %> === markers[j].getPosition().lng()) {
+                    markers[j].setIcon('http://maps.google.com/mapfiles/ms/micons/green.png');
+                  }
+                }
+
+
+              }
+          <% } %>
+          }
+        </script>
+
+        <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbaquDx8y6rEsF3pDbMJuoY-uhD3jHEO8&callback=initMap&libraries=&v=weekly" async></script>
+
+      </div>
+    </section>
+    <% } %>
+
+    <% if(showSchedule) { %>
+    <section id="schedule">
+
+      <div class="hours">
+        <hr class="hours-hr">
+        <h1 class="hours-heading">When do you want to display your Ad?</h1>
+        <p class="hours-paragraph">Our day is divided into 6 4-hour slots, pick any
+          slot and its free of charge, if you pick
+          more than one slot, the price will be multiplied by the total number of slots.</p>
+        <form class="time-box" action="/cost-estimator/4" method="post">
+          <input class="plus-minus" type="checkbox" name="time1" id="time1" value="true">
+          <label class="hours-label" for="time1">00:00 - 04:00</label> <br>
+          <input class="plus-minus" type="checkbox" name="time2" id="time2" value="true">
+          <label class="hours-label" for="time2">04:00 - 08:00</label> <br>
+          <input class="plus-minus" type="checkbox" name="time3" id="time3" value="true">
+          <label class="hours-label" for="time3">08:00 - 12:00</label> <br>
+          <input class="plus-minus" type="checkbox" name="time4" id="time4" value="true">
+          <label class="hours-label" for="time4">12:00 - 16:00</label> <br>
+          <input class="plus-minus" type="checkbox" name="time5" id="time5" value="true">
+          <label class="hours-label" for="time5">16:00 - 20:00</label> <br>
+          <input class="plus-minus" type="checkbox" name="time6" id="time6" value="true">
+          <label class="hours-label" for="time6">20:00 - 00:00</label> <br>
+          <div class="hours-btn-position">
+            <button type="submit" class="hours-btn btn btn-lg">Submit</button>
+          </div>
+        </form>
+
+        <% for(var i = 0; i < costCheckboxValues.length; i++) { %>
+        <%  if(costCheckboxValues[i] === 1) { %>
+            <script type="text/javascript">
+              var j = <%= i %>;
+              $('.plus-minus')[j].checked = true;
+            </script>
+        <%  } %>
+        <% } %>
+      </div>
+
+      <div class="hours">
+        <hr class="hours-hr">
+        <h1 class="hours-heading">Frequency of your Ad</h1>
+        <p class="hours-paragraph">Frequency is the number of times your ad will pop up during every slot(s) you picked,
+        the first 10 times are free of charge, after that each 10 times will cost 250 LE / billboard
+        for the length of your campaign.</p>
+        <form class="pad"  id="frequency" action="/cost-estimator/7" method="post">
+          <label class="custom-select" for="frequency">
+          <select id="frequency" name="frequency">
+            <% if (campaign.frequency === undefined) { %>
+              <option value="0">Choose frequency..</option>
+              <option value="10">10 times</option>
+              <option value="20">20 times</option>
+              <option value="30">30 times</option>
+              <option value="40">40 times</option>
+              <option value="50">50 times</option>
+              <option value="60">60 times</option>
+              <option value="70">70 times</option>
+              <option value="80">80 times</option>
+              <option value="90">90 times</option>
+              <option value="100">100 times</option>
+            <% } else { %>
+              <% if (campaign.frequency === "10") { %>
+                <option value="10" selected>10 times</option>
+              <% } else { %>
+                <option value="10">10 times</option>
+              <% } %>
+              <% if (campaign.frequency=== "20") { %>
+                <option value="20" selected>20 times</option>
+              <% } else { %>
+                <option value="20">20 times</option>
+              <% } %>
+              <% if (campaign.frequency === "30") { %>
+                <option value="30" selected>30 times</option>
+              <% } else { %>
+                <option value="30">30 times</option>
+              <% } %>
+              <% if (campaign.frequency === "40") { %>
+                <option value="40" selected>40 times</option>
+              <% } else { %>
+                <option value="40">40 times</option>
+              <% } %>
+              <% if (campaign.frequency === "50") { %>
+                <option value="50" selected>50 times</option>
+              <% } else { %>
+                <option value="50">50 times</option>
+              <% } %>
+              <% if (campaign.frequency === "60") { %>
+                <option value="60" selected>60 times</option>
+              <% } else { %>
+                <option value="60">60 times</option>
+              <% } %>
+              <% if (campaign.frequency === "70") { %>
+                <option value="70" selected>70 times</option>
+              <% } else { %>
+                <option value="70">70 times</option>
+              <% } %>
+              <% if (campaign.frequency === "80") { %>
+                <option value="80" selected>80 times</option>
+              <% } else { %>
+                <option value="80">80 times</option>
+              <% } %>
+              <% if (campaign.frequency === "90") { %>
+                <option value="90" selected>90 times</option>
+              <% } else { %>
+                <option value="90">90 times</option>
+              <% } %>
+              <% if (campaign.frequency === "100") { %>
+                <option value="100" selected>100 times</option>
+              <% } else { %>
+                <option value="100">100 times</option>
+              <% } %>
+            <% } %>
+          </select></label>
+          <!-- <input type="submit" class=""> -->
+        </form>
+      </div>
+
+      <div class="hours">
+        <hr class="hours-hr">
+        <h1 class="hours-heading">How much time your Ad should be displayed per minute?</h1>
+        <p class="hours-paragraph">Choose the number of seconds your ad will be displayed every time it pops up!
+        The first 5 seconds are free of charge, each 5 seconds after that will cost 500 LE / billboard
+        for the length of your campaign.</p>
+        <form class="pad" id="seconds" action="/cost-estimator/5" method="post">
+          <label class="custom-select" for="seconds">
+          <select id="seconds" name="seconds">
+            <% if (campaign.secondsDisplayed === undefined) { %>
+                <option value="0">Pick a number..</option>
+                <option value="5">5 Seconds</option>
+                <option value="10">10 Seconds</option>
+                <option value="15">15 Seconds</option>
+                <option value="20">20 Seconds</option>
+                <option value="25">25 Seconds</option>
+                <option value="30">30 Seconds</option>
+            <% } else { %>
+              <% if (campaign.secondsDisplayed === "5") { %>
+                <option value="5" selected>5 Seconds</option>
+              <% } else { %>
+                <option value="5">5 Seconds</option>
+              <% } %>
+              <% if (campaign.secondsDisplayed === "10") { %>
+                <option value="10" selected>10 Seconds</option>
+              <% } else { %>
+                <option value="10">10 Seconds</option>
+              <% } %>
+              <% if (campaign.secondsDisplayed === "15") { %>
+                <option value="15" selected>15 Seconds</option>
+              <% } else { %>
+                <option value="15">15 Seconds</option>
+              <% } %>
+              <% if (campaign.secondsDisplayed === "20") { %>
+                <option value="20" selected>20 Seconds</option>
+              <% } else { %>
+                <option value="20">20 Seconds</option>
+              <% } %>
+              <% if (campaign.secondsDisplayed === "25") { %>
+                <option value="25" selected>25 Seconds</option>
+              <% } else { %>
+                <option value="25">25 Seconds</option>
+              <% } %>
+              <% if (campaign.secondsDisplayed === "30") { %>
+                <option value="30" selected>30 Seconds</option>
+              <% } else { %>
+                <option value="30">30 Seconds</option>
+              <% } %>
+            <% } %>
+          </select></label>
+        </form>
+      </div>
+
+      <script>
+        $('form select').on('change', function() {
+            $(this).closest('form').submit();
+        });
+      </script>
+    </section>
+    <% } %>
+
+    <% if(showMaps || showSchedule) { %>
+      <footer class="">
+        <h3 class="footer-heading">Total Price: <%= costPrice %> LE</h3>
+        <% if (showMaps) { %>
+          <form class="confirm-padding" action="/cost-estimator/8" method="post">
+            <button id="confirm" type="submit" name="" class="btn-confirm btn btn-lg">Confirm</button>
+          </form>
+        <% } %>
+        <% if (showSchedule) { %>
+          <div class="confirm-padding">
+            <a href="/home">
+              <button id="confirm2" type="button" class="btn-confirm btn btn-lg">Confirm</button>
+            </a>
+          </div>
+        <% } %>
+      </footer>
+
+      <script>
+        //if hoursDisplayed submit button is not pressed yet.
+        <% if (showMaps && costArr.length === 0) { %>
+          $("#confirm").attr('disabled',true);
+        <% } %>
+        <% if (showSchedule && ( (typeof campaign.hoursDisplayed === 'undefined') || (typeof campaign.secondsDisplayed === 'undefined') || (typeof campaign.frequency === 'undefined'))) { %>
+          $("#confirm2").attr('disabled',true);
+        <% } %>
+      </script>
+    <% } %>
+  </body>
+</html>

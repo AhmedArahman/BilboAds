@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+
+  <?xml version="1.0" encoding="utf-8"?>
+
+  <meta charset="utf-8">
+  <title>Bilbo Ads - Billboard Advertising Never Been Easier</title>
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+  <link rel="manifest" href="images/site.webmanifest">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@900&family=Roboto:wght@700&display=swap" rel="stylesheet">
+
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/63cfdc02a3.js" crossorigin="anonymous"></script>
+
+  <base href="/">
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  <!-- My css -->
+  <style media="screen">
+    #slide {
+
+    position : fixed; /*can also use absolute and the parent element can have relative*/
+    top : 0;
+    left : 0;
+    width : 100%;
+    height : 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <% if(images1.length > 0) { %>
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <% for(var i = 0; i < images1.length; i++) { %>
+            <% if(!disapprovedCampaigns.includes(images1[i].id)) { %>
+                <% var seconds = (images1[i].secondsDisplayed/2)*1000 %>
+                <% if (i === 0) { %>
+                    <div class="carousel-item active" data-interval="<%= seconds %>">
+                <% } else { %>
+                    <div class="carousel-item" data-interval="<%= seconds %>">
+                <% } %>
+                      <img id="slide" src="data:image/<%=images1[i].img.contentType%>;base64,<%=images1[i].img.data.toString('base64')%>" />
+                    </div>
+            <% } %>
+          <% } %>
+          <div class="carousel-item" data-interval="<%= secondsAd %>">
+            <img id="slide" src="images/billboard.jpg" />
+          </div>
+        </div>
+      </div>
+
+  <script type="text/javascript">
+    var t;
+
+    var start = $('#myCarousel').find('.active').attr('data-interval');
+    t = setTimeout("$('#myCarousel').carousel({interval: 1000});", start - 1000);
+
+
+    $('#myCarousel').on('slid.bs.carousel', function() {
+      clearTimeout(t);
+      var duration = $(this).find('.active').attr('data-interval');
+
+      $('#myCarousel').carousel('pause');
+      t = setTimeout("$('#myCarousel').carousel();", duration - 1000);
+    })
+
+    <% if(totalFrequency <= 0) { %>
+        ("#myCarousel").remove();
+    <% } %>
+  </script>
+
+  <% } else { %>
+        <img id="slide" src="images/billboard.jpg" alt="">
+  <% } %>
+</body>
+
+</html>

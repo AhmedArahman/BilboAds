@@ -1,0 +1,131 @@
+html {
+scroll-behavior: smooth;
+}
+
+/* Section:  maps */
+
+#maps-section {
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  padding-bottom: 5%;
+  padding-top: 8%;
+  background-color: #616F39;
+}
+
+.maps-text {
+  padding: 5% 5% 5% 4%;
+}
+
+.maps-hr {
+  position: relative;
+  top: 20px;
+  border: none;
+  height: 12px;
+  width: 200px;
+  background: #1e1e1e;
+  display: inline-block;
+}
+
+.maps-heading {
+  font-size: 3.5em;
+  font-weight: bold;
+  padding: 1% 0 4% 0;
+}
+
+.maps-heading-3 {
+  font-size: 1.7em;
+  font-weight: bold;
+}
+
+.maps-paragraph {
+  font-size: 1.1em;
+  padding-bottom: 1%;
+}
+
+.maps-btn {
+  background-color: #000;
+  color: #fff;
+}
+
+.maps-btn:hover {
+  background-color: #1e1e1e;
+  transition: 0.5s;
+  color: #fff;
+}
+
+#mapMain {
+  height: 600px;
+  width: 1300px;
+  z-index: 0;
+}
+
+.google-maps {
+  position: relative;
+  left: 60px;
+}
+
+/* section: gov */
+
+#gov {
+  background-color: #1e1e1e;
+  padding: 5%;
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+}
+
+.gov-btn {
+  background-color: #A7D129;
+  color: #fff;
+}
+
+.gov-btn:hover {
+  background-color: #616F39;
+  transition: 0.5s;
+  color: #fff;
+}
+
+.cairo {
+  padding-bottom: 10%;
+}
+
+.gov-heading {
+  font-size: 3rem;
+}
+
+.gov-hr {
+  position: relative;
+
+  border: none;
+  height: 8px;
+  width: 250px;
+  background: #616F39;
+  display: inline-block;
+}
+
+.gov-paragraph {
+  font-size: 1.3rem;
+}
+
+#mapCairo {
+  height: 500px;
+  width: 600px;
+  z-index: 0;
+  float: right;
+  top: -400px;
+}
+
+#mapGiza {
+  height: 500px;
+  width: 600px;
+  z-index: 0;
+  float: right;
+  top: -400px;
+}
+
+#mapAlex {
+  height: 500px;
+  width: 600px;
+  z-index: 0;
+  float: right;
+  margin-top: -400px;
+}

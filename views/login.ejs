@@ -1,0 +1,43 @@
+<%- include("partials/header-purple") -%>
+
+<link rel="stylesheet" href="css/login.css">
+
+<div id="status" style="display: none;visibility: hidden;"><%= errormessage %></div>
+
+<section id="login-page">
+
+  <div class="wrapper fadeInDown">
+    <div id="formContent">
+      <!-- Tabs Titles -->
+
+      <!-- Icon -->
+      <div class="fadeIn first login-icon">
+        <img src="images/user.png" alt="">
+      </div>
+
+      <!-- Login Form -->
+      <form class="" action="/login" method="POST">
+        <div class="login-email">
+          <input type="text" id="email" class="fadeIn second" name="username" placeholder="Email" required>
+        </div>
+        <div class="login-password">
+          <input type="password" id="password" class="fadeIn third" name="password" placeholder="Password" required>
+        </div>
+        <div class="login-register fadeIn fourth">
+          <p class="login-paragraph">New To Bilbo Ads? <span> </span>
+            <a class="login-anchor" href="/sign-up"> Register Now! <i class="fas fa-angle-right"></i></a>
+          </p>
+        </div>
+        <input type="submit" class="fadeIn fifth" value="Log In">
+      </form>
+
+    </div>
+  </div>
+
+</section>
+
+<script>
+  if ($('div#status').text() != '') {
+    alert($('div#status').text());
+  }
+</script>

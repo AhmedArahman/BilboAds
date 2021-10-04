@@ -1,0 +1,134 @@
+#footer {
+  background-color: #000;
+  margin: 0;
+  color: #fff;
+  width: 100%;
+}
+
+.footer-logo {
+  position: relative;
+  left: -23px;
+  width: 160px;
+  height: 90px;
+}
+
+.bottom {
+  padding: 5% 0 5% 4%;
+}
+
+.column {
+  float: left;
+  width: 33.33%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+  }
+}
+
+.info {
+  padding-left: 10%;
+  padding-top: 2%;
+}
+
+.data-paragraph-1 {
+  font-family: 'Roboto', sans-serif;
+  padding-top: 10%;
+  font-size: 1.1rem;
+}
+
+.data-paragraph-2 {
+  font-family: 'Roboto', sans-serif;
+  padding-top: 6%;
+  font-size: 1.1rem;
+}
+
+.company {
+  padding-left: 7%;
+  padding-top: 2%;
+}
+
+.company-heading {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2rem;
+  padding-bottom: 4%;
+}
+
+.company-anchor {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2rem;
+  color: #fff;
+  display:block;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.company-anchor:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+.product {
+  padding-left: 7%;
+  padding-top: 2%;
+}
+
+.product-heading {
+  font-family: 'Oswald', sans-serif;
+  font-size: 2rem;
+  padding-bottom: 4%;
+}
+
+.product-anchor {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.2rem;
+  color: #fff;
+  display:block;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.product-anchor:hover {
+  text-decoration: none;
+  color: #fff;
+}
+
+#social {
+  width: 100%;
+  text-align: center;
+}
+
+#container {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+#container a {
+  display: inline-block;
+  margin: 0 30px;
+  list-style-type: none;
+}
+
+.icon2 {
+  color: #A7D129;
+}
+
+.icon2:hover {
+  color: #616F39;
+  transition: color 200ms linear;
+}
+
+.bilbo {
+  position: relative;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+}
